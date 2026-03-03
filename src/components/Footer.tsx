@@ -1,6 +1,7 @@
 // Footer Component
 
 import React from 'react';
+import Image from 'next/image';
 import Link from 'next/link';
 import { FaPhone, FaEnvelope, FaMapMarkerAlt } from 'react-icons/fa';
 
@@ -37,10 +38,18 @@ const Footer: React.FC<FooterProps> = ({
     <footer className="bg-gray-900 text-gray-100">
       {/* Main Footer Content */}
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
           {/* About Section */}
           <div>
-            <h3 className="text-lg font-bold text-white mb-4">PMO</h3>
+            <Link href="/" className="inline-block mb-4">
+              <Image
+                src="/images/logo.jpeg"
+                alt="PMO Logo"
+                width={60}
+                height={60}
+                className="h-16 w-auto"
+              />
+            </Link>
             <p className="text-gray-400 text-sm leading-relaxed">
               Lagos State Parastatals Monitoring Office ensures that state
               agencies and government-owned companies operate in line with
@@ -48,11 +57,28 @@ const Footer: React.FC<FooterProps> = ({
             </p>
           </div>
 
-          {/* Quick Links Section */}
+          {/* Quick Links Section 1 */}
           <div>
             <h3 className="text-lg font-bold text-white mb-4">Quick Links</h3>
             <ul className="space-y-2">
-              {quickLinks.map((link) => (
+              {quickLinks.slice(0, 4).map((link) => (
+                <li key={link.href}>
+                  <Link
+                    href={link.href}
+                    className="text-gray-400 hover:text-red-400 transition-colors"
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Quick Links Section 2 */}
+          <div>
+            <h3 className="text-lg font-bold text-white mb-4">More Links</h3>
+            <ul className="space-y-2">
+              {quickLinks.slice(4).map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}

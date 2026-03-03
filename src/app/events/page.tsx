@@ -11,57 +11,48 @@ export default function EventsPage() {
   const upcomingEvents = [
     {
       id: '1',
-      title: 'Quarterly Performance Review Forum',
+      title: 'Paraface',
       date: '2024-03-15',
       time: '10:00 AM',
       location: 'PMO Conference Center, Ikeja',
-      description: 'A forum to review the quarterly performance of parastatals and discuss improvement strategies.',
+      description: 'Parastatals Facility Conference - A forum for parastatals heads and stakeholders.',
       featured: true,
     },
     {
       id: '2',
-      title: 'Corporate Governance Workshop',
+      title: 'Submit',
       date: '2024-03-22',
       time: '9:00 AM',
       location: 'Lekki Business Hub, Lagos',
-      description: 'Comprehensive workshop on best practices in corporate governance for parastatal officials.',
+      description: 'Strategic Submission and Monitoring Initiative for Better Enterprise Transformation.',
       featured: true,
     },
     {
       id: '3',
-      title: 'Financial Sustainability Seminar',
+      title: 'Pargem',
       date: '2024-04-05',
       time: '2:00 PM',
       location: 'Victoria Island Conference Center',
-      description: 'Exploring strategies for achieving financial self-sufficiency in state enterprises.',
+      description: 'Parastatals Governance and Excellence Management program.',
       featured: false,
     },
     {
       id: '4',
-      title: 'Board Members Training Program',
+      title: 'Parley',
       date: '2024-04-12',
       time: '10:00 AM',
       location: 'PMO Training Institute',
-      description: 'Capacity building program for board members of state-owned enterprises.',
+      description: 'Parastatals Leadership Engagement and Yearly forum.',
       featured: false,
     },
     {
       id: '5',
-      title: 'Annual Performance Awards Ceremony',
+      title: 'I am alive',
       date: '2024-04-25',
       time: '6:00 PM',
       location: 'Eko Hotel and Suites, Victoria Island',
-      description: 'Celebrating outstanding performance and achievements in the parastatal sector.',
+      description: 'Annual Impact and Livelihood Enhancement Initiative for Ventures and Enterprises.',
       featured: true,
-    },
-    {
-      id: '6',
-      title: 'Stakeholder Engagement Meeting',
-      date: '2024-05-10',
-      time: '3:00 PM',
-      location: 'Government House Annex',
-      description: 'Interactive session with parastatals heads and government officials.',
-      featured: false,
     },
   ];
 
@@ -120,19 +111,19 @@ export default function EventsPage() {
               <CardHeader>
                 <CardTitle className="text-lg line-clamp-2">{event.title}</CardTitle>
               </CardHeader>
-              <CardContent className="flex-grow">
+              <CardContent className="grow">
                 <CardDescription className="mb-4">{event.description}</CardDescription>
                 <div className="space-y-2 text-sm">
                   <div className="flex items-center gap-2 text-gray-600">
-                    <FaCalendarAlt className="text-blue-600 w-4 h-4 flex-shrink-0" />
+                    <FaCalendarAlt className="text-blue-600 w-4 h-4 shrink-0" />
                     <span>{formatDate(event.date)}</span>
                   </div>
                   <div className="flex items-center gap-2 text-gray-600">
-                    <FaClock className="text-blue-600 w-4 h-4 flex-shrink-0" />
+                    <FaClock className="text-blue-600 w-4 h-4 shrink-0" />
                     <span>{event.time}</span>
                   </div>
                   <div className="flex items-start gap-2 text-gray-600">
-                    <FaMapMarkerAlt className="text-blue-600 w-4 h-4 flex-shrink-0 mt-0.5" />
+                    <FaMapMarkerAlt className="text-blue-600 w-4 h-4 shrink-0 mt-0.5" />
                     <span>{event.location}</span>
                   </div>
                 </div>
@@ -188,7 +179,7 @@ export default function EventsPage() {
           {pastEvents.map((event) => (
             <Card key={event.id}>
               <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4">
-                <div className="flex-grow">
+                <div className="grow">
                   <h3 className="text-lg font-bold text-gray-900 mb-2">
                     {event.title}
                   </h3>
@@ -204,7 +195,7 @@ export default function EventsPage() {
                     </div>
                   </div>
                 </div>
-                <div className="flex-shrink-0">
+                <div className="shrink-0">
                   <span className="inline-block bg-gray-200 text-gray-700 px-3 py-1 rounded-full text-xs font-semibold">
                     Completed
                   </span>
@@ -225,7 +216,7 @@ export default function EventsPage() {
             Subscribe to our newsletter to receive updates about upcoming events,
             seminars, and workshops.
           </p>
-          <Button variant="primary" size="lg" className="bg-white text-blue-700 hover:bg-gray-100">
+          <Button variant="primary" size="lg">
             Subscribe Now
           </Button>
         </div>
