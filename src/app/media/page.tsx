@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import Hero from '@/components/Hero';
 import Section, { SectionTitle, SectionSubtitle, SectionGrid } from '@/components/Section';
 import Card, { CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/components/Card';
@@ -104,7 +105,7 @@ export default function MediaPage() {
           {newsItems.length > 0 && (
             <Card className="mb-12 border-2 border-blue-600 overflow-hidden">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="bg-gradient-to-br from-blue-400 to-blue-600 h-64 md:h-auto" />
+                <div className="bg-linear-to-br from-blue-400 to-blue-600 h-64 md:h-auto" />
                 <div className="p-6 flex flex-col justify-between">
                   <div>
                     <div className="inline-block bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-xs font-semibold mb-3">
@@ -125,9 +126,11 @@ export default function MediaPage() {
                       </div>
                     </div>
                   </div>
-                  <Button variant="primary" className="mt-4">
-                    Read Full Story
-                  </Button>
+                  <Link href={`/media/${newsItems[0].slug}`} className="inline-block mt-4">
+                    <Button variant="primary" className="mt-4">
+                      Read Full Story
+                    </Button>
+                  </Link>
                 </div>
               </div>
             </Card>
@@ -139,13 +142,13 @@ export default function MediaPage() {
               <Card key={news.id} className="flex flex-col h-full hover:shadow-lg transition-shadow">
                 <CardHeader>
                   <div className="flex items-start justify-between gap-3 mb-2">
-                    <CardTitle className="text-lg flex-grow">{news.title}</CardTitle>
-                    <span className="inline-block bg-gray-100 text-gray-700 px-2 py-1 rounded text-xs font-semibold whitespace-nowrap flex-shrink-0">
+                    <CardTitle className="text-lg grow">{news.title}</CardTitle>
+                    <span className="inline-block bg-gray-100 text-gray-700 px-2 py-1 rounded text-xs font-semibold whitespace-nowrap shrink-0">
                       {news.category}
                     </span>
                   </div>
                 </CardHeader>
-                <CardContent className="flex-grow">
+                <CardContent className="grow">
                   <CardDescription className="mb-4">{news.excerpt}</CardDescription>
                   <div className="flex flex-col gap-2 text-xs text-gray-500">
                     <div className="flex items-center gap-1">
@@ -159,9 +162,11 @@ export default function MediaPage() {
                   </div>
                 </CardContent>
                 <CardFooter>
-                  <Button variant="ghost" className="text-blue-600 hover:text-blue-700 p-0">
-                    Read More →
-                  </Button>
+                  <Link href={`/media/${news.slug}`}>
+                    <Button variant="ghost" className="text-blue-600 hover:text-blue-700 p-0">
+                      Read More →
+                    </Button>
+                  </Link>
                 </CardFooter>
               </Card>
             ))}
@@ -218,7 +223,7 @@ export default function MediaPage() {
             <input
               type="email"
               placeholder="Enter your email address"
-              className="flex-grow px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+              className="grow px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
               required
             />
             <Button variant="primary" size="lg" className="bg-white text-blue-700 hover:bg-gray-100 px-8">

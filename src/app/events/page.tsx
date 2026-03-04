@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import Hero from '@/components/Hero';
 import Section, { SectionTitle, SectionSubtitle, SectionGrid } from '@/components/Section';
 import Card, { CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/components/Card';
@@ -12,6 +13,7 @@ export default function EventsPage() {
     {
       id: '1',
       title: 'Paraface',
+      slug: 'paraface',
       date: '2024-03-15',
       time: '10:00 AM',
       location: 'PMO Conference Center, Ikeja',
@@ -21,6 +23,7 @@ export default function EventsPage() {
     {
       id: '2',
       title: 'Submit',
+      slug: 'submit',
       date: '2024-03-22',
       time: '9:00 AM',
       location: 'Lekki Business Hub, Lagos',
@@ -30,6 +33,7 @@ export default function EventsPage() {
     {
       id: '3',
       title: 'Pargem',
+      slug: 'pargem',
       date: '2024-04-05',
       time: '2:00 PM',
       location: 'Victoria Island Conference Center',
@@ -39,6 +43,7 @@ export default function EventsPage() {
     {
       id: '4',
       title: 'Parley',
+      slug: 'parley',
       date: '2024-04-12',
       time: '10:00 AM',
       location: 'PMO Training Institute',
@@ -48,6 +53,7 @@ export default function EventsPage() {
     {
       id: '5',
       title: 'I am alive',
+      slug: 'i-am-alive',
       date: '2024-04-25',
       time: '6:00 PM',
       location: 'Eko Hotel and Suites, Victoria Island',
@@ -60,6 +66,7 @@ export default function EventsPage() {
     {
       id: '7',
       title: 'Internal Audit Refresher Course',
+      slug: 'internal-audit-refresher',
       date: '2024-02-20',
       location: 'PMO Training Institute',
       description: 'Training session on internal audit procedures and best practices.',
@@ -67,6 +74,7 @@ export default function EventsPage() {
     {
       id: '8',
       title: 'Monthly Parastatals Coordination Meeting',
+      slug: 'monthly-coordination-meeting',
       date: '2024-02-15',
       location: 'PMO Headquarters',
       description: 'Regular coordination meeting with heads of parastatals.',
@@ -129,9 +137,11 @@ export default function EventsPage() {
                 </div>
               </CardContent>
               <CardFooter>
-                <Button variant="primary" className="w-full">
-                  Register Now
-                </Button>
+                <Link href={`/events/${event.slug}`} className="w-full">
+                  <Button variant="primary" className="w-full">
+                    View Details
+                  </Button>
+                </Link>
               </CardFooter>
             </Card>
           ))}
