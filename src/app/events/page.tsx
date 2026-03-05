@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import Hero from '@/components/Hero';
-import Section, { SectionTitle, SectionSubtitle, SectionGrid } from '@/components/Section';
+import Section from '@/components/Section';
 import Card, { CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/components/Card';
 import Button from '@/components/Button';
 import { FaCalendarAlt, FaMapMarkerAlt, FaClock } from 'react-icons/fa';
@@ -113,103 +113,160 @@ export default function EventsPage() {
       <Hero
         title="Our Events"
         subtitle="Seminars, Workshops, and Engagement Programs"
-        backgroundColor="bg-gradient-to-r from-blue-700 via-blue-600 to-blue-800"
+        backgroundColor="bg-linear-to-r from-blue-700 via-blue-600 to-blue-800"
         height="md"
       />
 
       {/* Upcoming Events Section */}
       <Section bgColor="white">
-        <SectionTitle center>Upcoming Events</SectionTitle>
-        <SectionSubtitle center>
-          Join us for seminars, workshops, and strategic forums
-        </SectionSubtitle>
+        <div className="max-w-6xl mx-auto mb-12">
+          <h2 className="text-4xl font-bold text-gray-900 text-center mb-3">
+            Upcoming Events
+          </h2>
+          <p className="text-lg text-gray-600 text-center">
+            Join us for seminars, workshops, and strategic forums
+          </p>
+        </div>
 
-        <SectionGrid cols={3}>
+        <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {upcomingEvents.map((event) => (
-            <Card key={event.id} className={`flex flex-col h-full ${event.featured ? 'border-2 border-blue-600' : ''}`}>
-              {event.featured && (
-                <div className="bg-blue-600 text-white px-3 py-1 rounded-full inline-block text-xs font-semibold mb-3 w-fit">
-                  Featured Event
-                </div>
-              )}
-              <CardHeader>
-                <CardTitle className="text-lg line-clamp-2">{event.title}</CardTitle>
-              </CardHeader>
-              <CardContent className="grow">
-                <CardDescription className="mb-4">{event.description}</CardDescription>
-                <div className="space-y-2 text-sm">
-                  <div className="flex items-center gap-2 text-gray-600">
-                    <FaCalendarAlt className="text-blue-600 w-4 h-4 shrink-0" />
-                    <span>{formatDate(event.date)}</span>
+            <div
+              key={event.id}
+              className="group cursor-pointer transition-all duration-300"
+            >
+              <Card className={`flex flex-col h-full shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 ${
+                event.featured
+                  ? 'border-2 border-blue-600 lg:scale-105 origin-center'
+                  : ''
+              }`}>
+                {/* Featured Badge */}
+                {event.featured && (
+                  <div className="flex justify-center -mt-3 relative z-10">
+                    <div className="bg-linear-to-r from-blue-600 to-blue-500 text-white px-4 py-1.5 rounded-full text-xs font-bold shadow-lg">
+                      ⭐ Featured Event
+                    </div>
                   </div>
-                  <div className="flex items-center gap-2 text-gray-600">
-                    <FaClock className="text-blue-600 w-4 h-4 shrink-0" />
-                    <span>{event.time}</span>
+                )}
+
+                <CardHeader className="pt-6">
+                  <CardTitle className="text-xl font-bold text-gray-900 line-clamp-2 group-hover:text-blue-600 transition-colors">
+                    {event.title}
+                  </CardTitle>
+                </CardHeader>
+
+                <CardContent className="grow">
+                  <CardDescription className="text-gray-600 mb-6 line-clamp-3">
+                    {event.description}
+                  </CardDescription>
+
+                  {/* Event Details */}
+                  <div className="space-y-3 text-sm">
+                    <div className="flex items-center gap-3 text-gray-700 hover:text-blue-600 transition-colors">
+                      <div className="shrink-0 w-5 h-5 flex items-center justify-center">
+                        <FaCalendarAlt className="text-blue-600 w-4 h-4" />
+                      </div>
+                      <span className="font-medium">{formatDate(event.date)}</span>
+                    </div>
+                    <div className="flex items-center gap-3 text-gray-700 hover:text-blue-600 transition-colors">
+                      <div className="shrink-0 w-5 h-5 flex items-center justify-center">
+                        <FaClock className="text-blue-600 w-4 h-4" />
+                      </div>
+                      <span className="font-medium">{event.time}</span>
+                    </div>
+                    <div className="flex items-start gap-3 text-gray-700 hover:text-blue-600 transition-colors">
+                      <div className="shrink-0 w-5 h-5 flex items-center justify-center mt-0.5">
+                        <FaMapMarkerAlt className="text-blue-600 w-4 h-4" />
+                      </div>
+                      <span className="font-medium">{event.location}</span>
+                    </div>
                   </div>
-                  <div className="flex items-start gap-2 text-gray-600">
-                    <FaMapMarkerAlt className="text-blue-600 w-4 h-4 shrink-0 mt-0.5" />
-                    <span>{event.location}</span>
-                  </div>
-                </div>
-              </CardContent>
-              <CardFooter>
-                <Link href={`/events/${event.slug}`} className="w-full">
-                  <Button variant="primary" className="w-full">
-                    View Details
-                  </Button>
-                </Link>
-              </CardFooter>
-            </Card>
+                </CardContent>
+
+                <CardFooter className="border-t border-gray-100 pt-4">
+                  <Link href={`/events/${event.slug}`} className="w-full">
+                    <Button
+                      variant="primary"
+                      className={`w-full font-semibold transition-all transform hover:scale-105 ${
+                        event.featured ? 'bg-blue-600 hover:bg-blue-700' : ''
+                      }`}
+                    >
+                      View Details →
+                    </Button>
+                  </Link>
+                </CardFooter>
+              </Card>
+            </div>
           ))}
-        </SectionGrid>
+        </div>
       </Section>
 
       {/* Past Events Section */}
-      <Section bgColor="white">
-        <SectionTitle center>Recent Past Events</SectionTitle>
+      <Section bgColor="gray">
+        <div className="max-w-6xl mx-auto mb-10">
+          <h2 className="text-4xl font-bold text-gray-900 text-center mb-2">
+            Recent Past Events
+          </h2>
+          <p className="text-lg text-gray-600 text-center">
+            Celebrating our successful seminars and forums
+          </p>
+        </div>
 
-        <div className="max-w-3xl mx-auto space-y-4">
-          {pastEvents.map((event) => (
-            <Card key={event.id}>
-              <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4">
-                <div className="grow">
-                  <h3 className="text-lg font-bold text-gray-900 mb-2">
-                    {event.title}
-                  </h3>
-                  <p className="text-gray-600 mb-3">{event.description}</p>
-                  <div className="flex flex-col gap-2 text-sm text-gray-600">
-                    <div className="flex items-center gap-2">
-                      <FaCalendarAlt className="text-blue-600 w-4 h-4" />
-                      <span>{formatDate(event.date)}</span>
+        <div className="max-w-4xl mx-auto space-y-4">
+          {pastEvents.map((event, index) => (
+            <div
+              key={event.id}
+              className="group cursor-pointer transition-all duration-300"
+              style={{
+                animationDelay: `${index * 50}ms`,
+              }}
+            >
+              <Card className="shadow-sm hover:shadow-md transition-all duration-300 border-l-4 border-l-gray-300 hover:border-l-blue-600">
+                <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-6 p-1">
+                  <div className="grow">
+                    <h3 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors">
+                      {event.title}
+                    </h3>
+                    <p className="text-gray-600 mb-4 leading-relaxed">
+                      {event.description}
+                    </p>
+                    <div className="flex flex-col gap-2 text-sm">
+                      <div className="flex items-center gap-3 text-gray-600">
+                        <FaCalendarAlt className="text-blue-600 w-4 h-4 shrink-0" />
+                        <span>{formatDate(event.date)}</span>
+                      </div>
+                      <div className="flex items-center gap-3 text-gray-600">
+                        <FaMapMarkerAlt className="text-blue-600 w-4 h-4 shrink-0" />
+                        <span>{event.location}</span>
+                      </div>
                     </div>
-                    <div className="flex items-center gap-2">
-                      <FaMapMarkerAlt className="text-blue-600 w-4 h-4" />
-                      <span>{event.location}</span>
+                  </div>
+                  <div className="shrink-0">
+                    <div className="inline-block bg-green-100 text-green-700 px-4 py-2 rounded-lg text-xs font-bold">
+                      ✓ Completed
                     </div>
                   </div>
                 </div>
-                <div className="shrink-0">
-                  <span className="inline-block bg-gray-200 text-gray-700 px-3 py-1 rounded-full text-xs font-semibold">
-                    Completed
-                  </span>
-                </div>
-              </div>
-            </Card>
+              </Card>
+            </div>
           ))}
         </div>
       </Section>
 
       {/* CTA Section */}
-      <Section bgColor="blue">
+      <Section className="bg-linear-to-r from-blue-700 via-blue-600 to-blue-800">
         <div className="text-center max-w-2xl mx-auto">
-          <h2 className="text-3xl font-bold text-white mb-4">
+          <h2 className="text-4xl font-bold text-white mb-4">
             Stay Updated on Our Events
           </h2>
-          <p className="text-blue-100 mb-8">
+          <p className="text-lg text-blue-100 mb-8 leading-relaxed">
             Subscribe to our newsletter to receive updates about upcoming events,
-            seminars, and workshops.
+            seminars, and workshops directly to your inbox.
           </p>
-          <Button variant="primary" size="lg">
+          <Button
+            variant="primary"
+            size="lg"
+            className="bg-white text-blue-700 hover:bg-gray-50 font-semibold transform hover:scale-105 transition-all shadow-lg"
+          >
             Subscribe Now
           </Button>
         </div>
