@@ -130,12 +130,12 @@ The initiative underscores the Lagos State Government's continued resolve to bui
                       className="object-cover group-hover:scale-105 transition-transform duration-500"
                       priority
                     />
-                    <div className="absolute inset-0 bg-gradient-to-r from-black/20 to-transparent"></div>
+                    <div className="absolute inset-0 bg-linear-to-r from-black/20 to-transparent"></div>
                   </div>
                 )}
                 <div className="p-8 md:p-10 flex flex-col justify-between bg-white">
                   <div>
-                    <div className="inline-block bg-gradient-to-r from-blue-100 to-blue-50 text-blue-700 px-4 py-1.5 rounded-full text-xs font-bold mb-4 uppercase tracking-wider">
+                    <div className="inline-block bg-linear-to-r from-blue-100 to-blue-50 text-blue-700 px-4 py-1.5 rounded-full text-xs font-bold mb-4 uppercase tracking-wider">
                       ⭐ Featured Story
                     </div>
                     <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 leading-tight">
@@ -169,7 +169,7 @@ The initiative underscores the Lagos State Government's continued resolve to bui
               <Card key={news.id} variant="elevated" className="flex flex-col h-full overflow-hidden group hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
                 <CardHeader className="pb-0">
                   <div className="flex items-start justify-between gap-3 mb-4">
-                    <span className="inline-block bg-gradient-to-r from-blue-100 to-blue-50 text-blue-700 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider whitespace-nowrap shrink-0">
+                    <span className="inline-block bg-linear-to-r from-blue-100 to-blue-50 text-blue-700 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider whitespace-nowrap shrink-0">
                       {news.category}
                     </span>
                   </div>
@@ -233,7 +233,7 @@ The initiative underscores the Lagos State Government's continued resolve to bui
           ].map((category, index) => (
             <Card key={index} variant="elevated" className="text-center hover:shadow-xl hover:-translate-y-1 group transition-all duration-300">
               <div className="text-4xl mb-4 group-hover:scale-110 transition-transform duration-300">{category.icon}</div>
-              <h3 className="text-4xl font-bold bg-gradient-to-r from-blue-600 to-blue-700 bg-clip-text text-transparent mb-3">
+              <h3 className="text-4xl font-bold bg-linear-to-r from-blue-600 to-blue-700 bg-clip-text text-transparent mb-3">
                 {category.count}
               </h3>
               <h4 className="text-lg font-bold text-gray-900 mb-2">
@@ -285,7 +285,7 @@ The initiative underscores the Lagos State Government's continued resolve to bui
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             {['2026', '2025', '2024', '2023'].map((year) => (
               <Card key={year} variant="outlined" className="text-center cursor-pointer hover:shadow-lg hover:border-blue-400 transition-all duration-300 group">
-                <h3 className="text-4xl font-bold bg-gradient-to-r from-blue-600 to-blue-700 bg-clip-text text-transparent group-hover:scale-110 transition-transform duration-300">
+                <h3 className="text-4xl font-bold bg-linear-to-r from-blue-600 to-blue-700 bg-clip-text text-transparent group-hover:scale-110 transition-transform duration-300">
                   {year}
                 </h3>
                 <p className="text-sm text-gray-600 mt-3 font-medium group-hover:text-blue-600 transition-colors">View Archives →</p>
