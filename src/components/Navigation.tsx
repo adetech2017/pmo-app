@@ -25,7 +25,7 @@ const Navigation: React.FC = () => {
     { label: 'Our Events', href: '/events' },
     { label: 'Programmes', href: '/programmes' },
     { label: 'Gallery', href: '/gallery' },
-    { label: 'Media', href: '/media' },
+    { label: 'News', href: '/news' },
     { label: 'Contact Us', href: '/contact' },
   ];
 

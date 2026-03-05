@@ -12,19 +12,19 @@ export default function EventsPage() {
   const upcomingEvents = [
     {
       id: '1',
-      title: 'Paraface',
+      title: 'PARAFACE',
       slug: 'paraface',
-      date: '2024-03-15',
+      date: '2026-03-15',
       time: '10:00 AM',
       location: 'PMO Conference Center, Ikeja',
-      description: 'Parastatals Facility Conference - A forum for parastatals heads and stakeholders.',
+      description: 'Parastatals Interface - A forum for parastatals heads and stakeholders.',
       featured: true,
     },
     {
       id: '2',
       title: 'Submit',
       slug: 'submit',
-      date: '2024-03-22',
+      date: '2026-03-22',
       time: '9:00 AM',
       location: 'Lekki Business Hub, Lagos',
       description: 'Strategic Submission and Monitoring Initiative for Better Enterprise Transformation.',
@@ -32,19 +32,19 @@ export default function EventsPage() {
     },
     {
       id: '3',
-      title: 'Pargem',
+      title: 'PARGEM',
       slug: 'pargem',
-      date: '2024-04-05',
+      date: '2026-04-05',
       time: '2:00 PM',
       location: 'Victoria Island Conference Center',
-      description: 'Parastatals Governance and Excellence Management program.',
+      description: 'Parastatals Revenue Generating Meeting.',
       featured: false,
     },
     {
       id: '4',
       title: 'Parley',
       slug: 'parley',
-      date: '2024-04-12',
+      date: '2026-04-12',
       time: '10:00 AM',
       location: 'PMO Training Institute',
       description: 'Parastatals Leadership Engagement and Yearly forum.',
@@ -52,32 +52,48 @@ export default function EventsPage() {
     },
     {
       id: '5',
-      title: 'I am alive',
+      title: '"I Am Alive" Sensitization Programme',
       slug: 'i-am-alive',
-      date: '2024-04-25',
+      date: '2026-04-25',
       time: '6:00 PM',
       location: 'Eko Hotel and Suites, Victoria Island',
-      description: 'Annual Impact and Livelihood Enhancement Initiative for Ventures and Enterprises.',
+      description: 'Sensitization programme on Pension Verification Exercise.',
       featured: true,
     },
   ];
 
   const pastEvents = [
     {
+      id: '6',
+      title: "CEO's Retreat",
+      slug: 'ceos-retreat',
+      date: '2025-12-15',
+      location: 'PMO Leadership Center',
+      description: 'Executive leadership retreat for strategic planning and organizational alignment.',
+    },
+    {
       id: '7',
-      title: 'Internal Audit Refresher Course',
-      slug: 'internal-audit-refresher',
-      date: '2024-02-20',
-      location: 'PMO Training Institute',
-      description: 'Training session on internal audit procedures and best practices.',
+      title: 'Lagos State - Federal Summit',
+      slug: 'lagos-federal-summit',
+      date: '2025-11-20',
+      location: 'Lagos State Convention Center',
+      description: 'Summit bringing together Lagos State and Federal government stakeholders for collaborative governance.',
     },
     {
       id: '8',
-      title: 'Monthly Parastatals Coordination Meeting',
-      slug: 'monthly-coordination-meeting',
-      date: '2024-02-15',
-      location: 'PMO Headquarters',
-      description: 'Regular coordination meeting with heads of parastatals.',
+      title: 'Workshop on Improving Work Ethics in the Workplace',
+      slug: 'work-ethics-workshop',
+      date: '2025-10-18',
+      location: 'PMO Training Institute',
+      description: 'Workshop on Improving Work Ethics in the Workplace Through Employee Wellness and Resilience Initiatives in Parastatals/Agencies for Management Staff.',
+    },
+    {
+      id: '9',
+      title: 'Knowledge Sharing Session for Heads of Finance',
+      slug: 'finance-knowledge-sharing',
+      date: '2025-09-22',
+      location: 'PMO Conference Center',
+      description: 'Knowledge Sharing Session for Heads of Finance and Accounts/Revenue Officers of Parastatals, Agencies & Government-Owned Companies.',
     },
   ];
 
@@ -146,39 +162,6 @@ export default function EventsPage() {
             </Card>
           ))}
         </SectionGrid>
-      </Section>
-
-      {/* Event Categories Section */}
-      <Section bgColor="gray">
-        <SectionTitle center>Types of Events</SectionTitle>
-
-        <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6">
-          {[
-            {
-              title: 'Workshops',
-              description: 'Hands-on training sessions on governance, auditing, and management practices.',
-            },
-            {
-              title: 'Seminars',
-              description: 'Expert-led discussions on current issues in parastatal management.',
-            },
-            {
-              title: 'Forums',
-              description: 'Strategic meetings for performance review and stakeholder engagement.',
-            },
-            {
-              title: 'Awards & Recognition',
-              description: 'Celebrating outstanding achievements in the parastatal sector.',
-            },
-          ].map((eventType, index) => (
-            <Card key={index}>
-              <h3 className="text-lg font-bold text-gray-900 mb-2">
-                {eventType.title}
-              </h3>
-              <p className="text-gray-600 text-sm">{eventType.description}</p>
-            </Card>
-          ))}
-        </div>
       </Section>
 
       {/* Past Events Section */}

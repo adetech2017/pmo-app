@@ -29,28 +29,7 @@ export default function AboutPage() {
     },
   ];
 
-  const achievements = [
-    {
-      title: 'Parastatals Monitored',
-      stat: '50+',
-      description: 'State-owned enterprises under regular supervision',
-    },
-    {
-      title: 'Performance Audits',
-      stat: '200+',
-      description: 'Comprehensive evaluations conducted annually',
-    },
-    {
-      title: 'Efficiency Improvement',
-      stat: '35%',
-      description: 'Average improvement in operational efficiency',
-    },
-    {
-      title: 'Cost Savings',
-      stat: '$50M+',
-      description: 'Government resources saved through interventions',
-    },
-  ];
+  const achievements: Array<{ title: string; stat: string; description: string }> = [];
 
   return (
     <>

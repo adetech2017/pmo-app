@@ -4,6 +4,7 @@ import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { FaPhone, FaEnvelope, FaMapMarkerAlt } from 'react-icons/fa';
+import { FaInstagram, FaFacebook, FaXTwitter } from 'react-icons/fa6';
 
 interface FooterLink {
   label: string;
@@ -18,9 +19,9 @@ interface FooterProps {
 }
 
 const Footer: React.FC<FooterProps> = ({
-  contactEmail = 'info@pmo.gov.ng',
+  contactEmail = 'pmo@lagosstate.gov.ng',
   contactPhone = '+234 (0) 1 XXX XXXX',
-  contactAddress = 'Lagos State, Nigeria',
+  contactAddress = 'Block 1 Secretariant Alausa, Ikeja, Lagos State',
   year = new Date().getFullYear(),
 }) => {
   const quickLinks: FooterLink[] = [
@@ -30,7 +31,7 @@ const Footer: React.FC<FooterProps> = ({
     { label: 'Events', href: '/events' },
     { label: 'Programmes', href: '/programmes' },
     { label: 'Gallery', href: '/gallery' },
-    { label: 'Media', href: '/media' },
+    { label: 'News', href: '/news' },
     { label: 'Contact Us', href: '/contact' },
   ];
 
@@ -123,6 +124,37 @@ const Footer: React.FC<FooterProps> = ({
 
         {/* Divider */}
         <hr className="border-gray-700 my-8" />
+
+        {/* Social Media Section */}
+        <div className="flex justify-center items-center gap-6 mb-8">
+          <a
+            href="https://www.instagram.com/lasgpmo?igsh=MW4xeTJub2ZtZnh2Yw=="
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-gray-400 hover:text-red-400 transition-colors"
+            title="Follow us on Instagram"
+          >
+            <FaInstagram size={24} />
+          </a>
+          <a
+            href="https://www.facebook.com/share/1HJWhmowHS/?mibextid=wwXIfr"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-gray-400 hover:text-red-400 transition-colors"
+            title="Like us on Facebook"
+          >
+            <FaFacebook size={24} />
+          </a>
+          <a
+            href="https://x.com/pmolasg?s=21"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-gray-400 hover:text-red-400 transition-colors"
+            title="Follow us on X"
+          >
+            <FaXTwitter size={24} />
+          </a>
+        </div>
 
         {/* Copyright Section */}
         <div className="text-center text-gray-400 text-sm">

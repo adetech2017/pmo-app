@@ -13,6 +13,7 @@ interface HeroProps {
   overlay?: boolean;
   children?: React.ReactNode;
   className?: string;
+  titleSize?: string;
 }
 
 const Hero: React.FC<HeroProps> = ({
@@ -24,6 +25,7 @@ const Hero: React.FC<HeroProps> = ({
   overlay = true,
   children,
   className,
+  titleSize = 'text-4xl sm:text-5xl lg:text-6xl',
 }) => {
   const heightClasses = {
     sm: 'h-64',
@@ -59,7 +61,7 @@ const Hero: React.FC<HeroProps> = ({
 
       {/* Content */}
       <div className="relative z-10 text-center text-white px-4 sm:px-6 lg:px-8 max-w-4xl">
-        <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-4 leading-tight">
+        <h1 className={classNames(titleSize, 'font-bold mb-4 leading-tight')}>
           {title}
         </h1>
         {subtitle && (

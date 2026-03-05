@@ -1,6 +1,5 @@
 'use client';
 
-import { useState } from 'react';
 import { useParams } from 'next/navigation';
 import Hero from '@/components/Hero';
 import Section, { SectionTitle, SectionSubtitle } from '@/components/Section';
@@ -12,13 +11,13 @@ import { FaCalendarAlt, FaMapMarkerAlt, FaClock, FaArrowLeft, FaShare, FaDownloa
 const allEvents = [
   {
     id: '1',
-    title: 'Paraface',
+    title: 'PARAFACE',
     slug: 'paraface',
-    date: '2024-03-15',
+    date: '2026-03-15',
     time: '10:00 AM',
     location: 'PMO Conference Center, Ikeja',
-    description: 'Parastatals Facility Conference - A forum for parastatals heads and stakeholders.',
-    fullContent: `The Parastatals Facility Conference (Paraface) is a premier gathering of heads and senior officials of state-owned enterprises. This comprehensive forum provides a platform for discussing critical issues affecting the parastatal sector, sharing best practices, and fostering collaboration among participating agencies.
+    description: 'Parastatals Interface - A forum for parastatals heads and stakeholders.',
+    fullContent: `Parastatals Interface (PARAFACE) is a premier gathering of heads and senior officials of state-owned enterprises. This comprehensive forum provides a platform for discussing critical issues affecting the parastatal sector, sharing best practices, and fostering collaboration among participating agencies.
 
 The conference agenda includes keynote addresses from industry experts, panel discussions on governance and performance improvement, and networking sessions. Topics covered include:
 
@@ -45,7 +44,7 @@ Participants will gain insights into the latest trends in parastatal management 
     id: '2',
     title: 'Submit',
     slug: 'submit',
-    date: '2024-03-22',
+    date: '2026-03-22',
     time: '9:00 AM',
     location: 'Lekki Business Hub, Lagos',
     description: 'Strategic Submission and Monitoring Initiative for Better Enterprise Transformation.',
@@ -73,23 +72,23 @@ The program combines theoretical training with practical case studies from leadi
   },
   {
     id: '3',
-    title: 'Pargem',
+    title: 'PARGEM',
     slug: 'pargem',
-    date: '2024-04-05',
+    date: '2026-04-05',
     time: '2:00 PM',
     location: 'Victoria Island Conference Center',
-    description: 'Parastatals Governance and Excellence Management program.',
-    fullContent: `The Parastatals Governance and Excellence Management (Pargem) program is a comprehensive training initiative designed to equip parastatal leaders with the knowledge and skills necessary to achieve organizational excellence.
+    description: 'Parastatals Revenue Generating Meeting.',
+    fullContent: `The Parastatals Revenue Generating Meeting (PARGEM) is a strategic gathering focused on enhancing revenue generation and financial performance across state-owned enterprises.
 
-The program covers:
+The meeting addresses:
 
-- Corporate Governance Principles
-- Excellence Management Frameworks
-- Leadership Development
-- Strategic Human Resource Management
-- Innovation and Continuous Improvement
+- Revenue Optimization Strategies
+- Financial Performance Analysis
+- Best Practices in Revenue Management
+- Income Generation Initiatives
+- Financial Sustainability Planning
 
-Participants will engage with international best practices and learn from experienced practitioners in the field.`,
+Participants will discuss and share approaches to maximizing revenue streams while maintaining service quality and stakeholder satisfaction.`,
     featured: false,
     agenda: [
       { time: '01:00 - 02:00 PM', title: 'Registration & Welcome' },
@@ -103,7 +102,7 @@ Participants will engage with international best practices and learn from experi
     id: '4',
     title: 'Parley',
     slug: 'parley',
-    date: '2024-04-12',
+    date: '2026-04-12',
     time: '10:00 AM',
     location: 'PMO Training Institute',
     description: 'Parastatals Leadership Engagement and Yearly forum.',
@@ -126,26 +125,148 @@ Key topics include:
   },
   {
     id: '5',
-    title: 'I am alive',
+    title: '"I Am Alive" Sensitization Programme',
     slug: 'i-am-alive',
-    date: '2024-04-25',
+    date: '2026-04-25',
     time: '6:00 PM',
     location: 'Eko Hotel and Suites, Victoria Island',
-    description: 'Annual Impact and Livelihood Enhancement Initiative for Ventures and Enterprises.',
-    fullContent: `The Annual Impact and Livelihood Enhancement Initiative for Ventures and Enterprises (I AM ALIVE) celebrates the achievements of parastatals in creating positive social and economic impact.
+    description: 'Sensitization programme on Pension Verification Exercise.',
+    fullContent: `The "I Am Alive" Sensitization Programme is a comprehensive initiative designed to educate stakeholders and beneficiaries on the importance of the Pension Verification Exercise.
 
-This annual gala event features:
-- Recognition of outstanding performers
-- Impact stories and case studies
-- Networking among parastatal leaders
-- Entertainment and awards ceremony
-- Strategic vision for the coming year`,
+This program focuses on:
+- Understanding the Pension Verification Exercise process
+- Documentation requirements and procedures
+- Addressing common concerns and queries
+- Ensuring compliance and timely participation
+- Supporting beneficiaries through the process
+- Building awareness of pension benefits and entitlements
+
+The programme ensures all stakeholders are informed, prepared, and confident in participating in the pension verification exercise.`,
     featured: true,
     agenda: [
       { time: '05:30 - 06:00 PM', title: 'Welcome Reception' },
       { time: '06:00 - 07:00 PM', title: 'Dinner & Cocktails' },
       { time: '07:00 - 08:00 PM', title: 'Awards & Recognition' },
       { time: '08:00 - 09:00 PM', title: 'Entertainment' },
+    ],
+  },
+  {
+    id: '6',
+    title: "CEO's Retreat",
+    slug: 'ceos-retreat',
+    date: '2025-12-15',
+    time: '9:00 AM',
+    location: 'PMO Leadership Center',
+    description: 'Executive leadership retreat for strategic planning and organizational alignment.',
+    fullContent: `The CEO's Retreat is a strategic gathering of top executives from parastatals and government-owned enterprises. This high-level retreat focuses on organizational leadership, strategic planning, and alignment with government policies.
+
+The retreat covers:
+- Strategic Vision and Direction
+- Leadership Excellence
+- Organizational Performance
+- Risk Management and Mitigation
+- Cross-Agency Collaboration
+
+Participants engage in focused discussions, collaborative planning sessions, and networking opportunities to strengthen leadership effectiveness.`,
+    featured: false,
+    agenda: [
+      { time: '08:00 - 09:00 AM', title: 'Registration & Breakfast' },
+      { time: '09:00 - 10:30 AM', title: 'Strategic Vision Session' },
+      { time: '10:30 - 11:00 AM', title: 'Break' },
+      { time: '11:00 - 12:30 PM', title: 'Leadership Excellence Workshop' },
+      { time: '12:30 - 01:30 PM', title: 'Lunch' },
+      { time: '01:30 - 03:00 PM', title: 'Collaborative Planning' },
+      { time: '03:00 - 04:00 PM', title: 'Closing Session' },
+    ],
+  },
+  {
+    id: '7',
+    title: 'Lagos State - Federal Summit',
+    slug: 'lagos-federal-summit',
+    date: '2025-11-20',
+    time: '10:00 AM',
+    location: 'Lagos State Convention Center',
+    description: 'Summit bringing together Lagos State and Federal government stakeholders for collaborative governance.',
+    fullContent: `The Lagos State - Federal Summit is a strategic platform for dialogue and collaboration between state and federal government agencies. This summit facilitates coordination on matters of mutual interest and promotes integrated governance approaches.
+
+Key discussion areas include:
+- Federal-State Relations and Cooperation
+- Parastatals Performance and Coordination
+- Policy Harmonization
+- Resource Allocation and Utilization
+- Joint Development Initiatives
+
+The summit brings together high-ranking officials from both levels of government to strengthen working relationships and enhance service delivery.`,
+    featured: false,
+    agenda: [
+      { time: '09:00 - 10:00 AM', title: 'Registration & Welcome' },
+      { time: '10:00 - 11:30 AM', title: 'Opening Ceremony' },
+      { time: '11:30 - 01:00 PM', title: 'Keynote Addresses' },
+      { time: '01:00 - 02:00 PM', title: 'Lunch' },
+      { time: '02:00 - 03:30 PM', title: 'Panel Discussions' },
+      { time: '03:30 - 04:00 PM', title: 'Break' },
+      { time: '04:00 - 05:00 PM', title: 'Networking Session' },
+    ],
+  },
+  {
+    id: '8',
+    title: 'Workshop on Improving Work Ethics in the Workplace',
+    slug: 'work-ethics-workshop',
+    date: '2025-10-18',
+    time: '8:30 AM',
+    location: 'PMO Training Institute',
+    description: 'Workshop on Improving Work Ethics in the Workplace Through Employee Wellness and Resilience Initiatives in Parastatals/Agencies for Management Staff.',
+    fullContent: `This comprehensive workshop is designed specifically for management staff of parastatals, agencies, and government-owned companies. It focuses on enhancing work ethics, employee wellness, and building organizational resilience.
+
+Workshop topics include:
+- Ethics and Integrity in the Workplace
+- Employee Wellness Programs
+- Building Organizational Resilience
+- Stress Management and Mental Health
+- Creating a Positive Work Culture
+- Leadership and Employee Engagement
+
+The workshop combines theory with practical case studies and interactive exercises to ensure participants gain actionable insights.`,
+    featured: false,
+    agenda: [
+      { time: '08:00 - 08:30 AM', title: 'Registration & Refreshments' },
+      { time: '08:30 - 09:30 AM', title: 'Opening Session: Work Ethics in Modern Organizations' },
+      { time: '09:30 - 11:00 AM', title: 'Module 1: Ethics and Integrity' },
+      { time: '11:00 - 11:30 AM', title: 'Break' },
+      { time: '11:30 - 01:00 PM', title: 'Module 2: Employee Wellness' },
+      { time: '01:00 - 02:00 PM', title: 'Lunch' },
+      { time: '02:00 - 03:30 PM', title: 'Module 3: Building Resilience' },
+      { time: '03:30 - 04:00 PM', title: 'Q&A and Closing' },
+    ],
+  },
+  {
+    id: '9',
+    title: 'Knowledge Sharing Session for Heads of Finance',
+    slug: 'finance-knowledge-sharing',
+    date: '2025-09-22',
+    time: '2:00 PM',
+    location: 'PMO Conference Center',
+    description: 'Knowledge Sharing Session for Heads of Finance and Accounts/Revenue Officers of Parastatals, Agencies & Government-Owned Companies.',
+    fullContent: `This specialized knowledge sharing session is organized for heads of finance and accounts departments as well as revenue officers from parastatals, agencies, and government-owned companies. It provides a forum for sharing best practices, discussing challenges, and exploring innovative financial management approaches.
+
+Key topics covered:
+- Financial Management Best Practices
+- Revenue Optimization Strategies
+- Compliance and Reporting Standards
+- Digital Financial Systems
+- Internal Controls and Audit
+- Budget Planning and Execution
+
+Participants benefit from peer learning, expert insights, and networking with finance professionals across the parastatal sector.`,
+    featured: false,
+    agenda: [
+      { time: '01:00 - 02:00 PM', title: 'Registration & Refreshments' },
+      { time: '02:00 - 03:00 PM', title: 'Opening Remarks & Overview' },
+      { time: '03:00 - 04:00 PM', title: 'Session 1: Financial Management Innovations' },
+      { time: '04:00 - 04:30 PM', title: 'Break' },
+      { time: '04:30 - 05:30 PM', title: 'Session 2: Revenue Optimization' },
+      { time: '05:30 - 06:00 PM', title: 'Open Forum Discussion' },
+      { time: '06:00 - 06:30 PM', title: 'Closing & Networking' },
     ],
   },
 ];
@@ -172,7 +293,6 @@ export default function EventDetailPage() {
   const params = useParams();
   const slug = params.slug as string;
   const event = allEvents.find((e) => e.slug === slug) as Event | undefined;
-  const [isRegistered, setIsRegistered] = useState(false);
 
   if (!event) {
     return (
@@ -282,14 +402,6 @@ export default function EventDetailPage() {
 
               {/* Action Buttons */}
               <div className="flex flex-col sm:flex-row gap-4 mb-8">
-                <Button
-                  variant="primary"
-                  size="lg"
-                  onClick={() => setIsRegistered(!isRegistered)}
-                  className="flex-1"
-                >
-                  {isRegistered ? '✓ Registered' : 'Register Now'}
-                </Button>
                 <Button variant="ghost" className="flex items-center gap-2">
                   <FaShare size={16} />
                   Share
@@ -299,15 +411,6 @@ export default function EventDetailPage() {
                   Download Details
                 </Button>
               </div>
-
-              {/* Success Message */}
-              {isRegistered && (
-                <div className="bg-green-50 border border-green-200 rounded-lg p-4 mb-8">
-                  <p className="text-green-800">
-                    Thank you for registering! A confirmation email has been sent to your inbox.
-                  </p>
-                </div>
-              )}
             </CardContent>
           </Card>
 

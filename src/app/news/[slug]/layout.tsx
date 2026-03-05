@@ -7,15 +7,15 @@ const allNewsItems = [
     title: 'PMO Launches New Monitoring Framework',
     slug: 'pmo-launches-monitoring-framework',
     excerpt: 'A comprehensive framework designed to enhance monitoring of state parastatals and improve governance standards across all agencies.',
-    date: '2024-03-01',
+    date: '2026-03-01',
     category: 'Press Release',
   },
   {
     id: '2',
     title: 'Annual Performance Review Released',
     slug: 'annual-performance-review-2023',
-    excerpt: 'The 2023 annual report showcases improved efficiency across all state-owned enterprises with a 35% average improvement in operational metrics.',
-    date: '2024-02-28',
+    excerpt: 'The 2025 annual report showcases improved efficiency across all state-owned enterprises with a 35% average improvement in operational metrics.',
+    date: '2026-02-28',
     category: 'Report',
   },
   {
@@ -23,7 +23,7 @@ const allNewsItems = [
     title: 'Governance Workshop Concluded',
     slug: 'governance-workshop-success',
     excerpt: 'Over 150 parastatals officials participated in the corporate governance workshop held in Lagos, covering best practices and compliance standards.',
-    date: '2024-02-20',
+    date: '2026-02-20',
     category: 'News',
   },
   {
@@ -31,7 +31,7 @@ const allNewsItems = [
     title: 'Special Adviser Addresses Economic Forum',
     slug: 'special-adviser-economic-forum',
     excerpt: 'The Special Adviser to the Governor on Parastatals Monitoring discusses the role of efficient parastatals in achieving economic growth.',
-    date: '2024-02-15',
+    date: '2026-02-15',
     category: 'News',
   },
   {
@@ -39,7 +39,7 @@ const allNewsItems = [
     title: 'New Directors Appointed to PMO Leadership',
     slug: 'new-directors-appointed',
     excerpt: 'The Governor has approved the appointment of five new directors to strengthen the PMO\'s capacity in performance monitoring and evaluation.',
-    date: '2024-02-10',
+    date: '2026-02-10',
     category: 'Announcement',
   },
   {
@@ -47,7 +47,7 @@ const allNewsItems = [
     title: 'Success Story: Lagos Port Authority Transformation',
     slug: 'lpa-transformation-success',
     excerpt: 'The Lagos Port Authority achieved a remarkable 45% increase in operational efficiency following PMO interventions and monitoring.',
-    date: '2024-02-05',
+    date: '2026-02-05',
     category: 'Success Story',
   },
 ];
@@ -68,13 +68,13 @@ export async function generateMetadata({
   }
 
   return {
-    title: `${news.title} - PMO News & Media`,
+    title: `${news.title} - PMO News`,
     description: news.excerpt,
     keywords: ['news', 'media', 'press release', news.category, 'PMO'],
     openGraph: {
       title: news.title,
       description: news.excerpt,
-      url: `/media/${slug}`,
+      url: `/news/${slug}`,
       type: 'article',
       publishedTime: news.date,
     },
@@ -87,7 +87,7 @@ export function generateStaticParams() {
   }));
 }
 
-export default function MediaDetailLayout({
+export default function NewsDetailLayout({
   children,
 }: {
   children: React.ReactNode;

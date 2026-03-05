@@ -5,7 +5,8 @@ import Hero from '@/components/Hero';
 import Section, { SectionTitle, SectionSubtitle, SectionGrid } from '@/components/Section';
 import Card, { CardContent } from '@/components/Card';
 import Button from '@/components/Button';
-import { FaPhone, FaEnvelope, FaMapMarkerAlt, FaClock, FaTwitter, FaLinkedin, FaFacebook } from 'react-icons/fa';
+import { FaPhone, FaEnvelope, FaMapMarkerAlt, FaClock } from 'react-icons/fa';
+import { FaXTwitter, FaInstagram, FaFacebook } from 'react-icons/fa6';
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -82,7 +83,7 @@ export default function ContactPage() {
                     <p className="text-gray-600">
                       Lagos State Parastatals Monitoring Office
                       <br />
-                      Parastatals House
+                      Block 1 Secretariant Alausa, 
                       <br />
                       Ikeja, Lagos State
                       <br />
@@ -119,17 +120,17 @@ export default function ContactPage() {
                     </h3>
                     <p className="text-gray-600">
                       <a
-                        href="mailto:info@pmo.gov.ng"
+                        href="mailto:pmo@lagosstate.gov.ng"
                         className="hover:text-blue-600"
                       >
-                        info@pmo.gov.ng
+                        pmo@lagosstate.gov.ng
                       </a>
                       <br />
                       <a
-                        href="mailto:inquiries@pmo.gov.ng"
+                        href="mailto:pmoict11@gmail.com"
                         className="hover:text-blue-600"
                       >
-                        inquiries@pmo.gov.ng
+                        pmoict11@gmail.com
                       </a>
                     </p>
                   </div>
@@ -158,20 +159,29 @@ export default function ContactPage() {
                 </h3>
                 <div className="flex gap-4">
                   <a
-                    href="https://twitter.com/PMOLagos"
+                    href="https://x.com/pmolasg?s=21"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="w-10 h-10 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center hover:bg-blue-600 hover:text-white transition-colors"
+                    title="Follow us on X"
                   >
-                    <FaTwitter />
+                    <FaXTwitter />
                   </a>
                   <a
-                    href="https://linkedin.com/company/pmo-lagos"
+                    href="https://www.instagram.com/lasgpmo?igsh=MW4xeTJub2ZtZnh2Yw=="
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="w-10 h-10 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center hover:bg-blue-600 hover:text-white transition-colors"
+                    title="Follow us on Instagram"
                   >
-                    <FaLinkedin />
+                    <FaInstagram />
                   </a>
                   <a
-                    href="https://facebook.com/PMOLagos"
+                    href="https://www.facebook.com/share/1HJWhmowHS/?mibextid=wwXIfr"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="w-10 h-10 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center hover:bg-blue-600 hover:text-white transition-colors"
+                    title="Like us on Facebook"
                   >
                     <FaFacebook />
                   </a>
@@ -311,18 +321,18 @@ export default function ContactPage() {
         <SectionGrid cols={3}>
           {[
             {
-              title: 'Performance Audits',
-              email: 'audits@pmo.gov.ng',
+              title: 'Public Relations',
+              email: 'pmoict11@gmail.com',
               phone: '+234 (0) 1 XXX XXX',
             },
             {
               title: 'Compliance & Inspections',
-              email: 'compliance@pmo.gov.ng',
+              email: 'pmoict11@gmail.com',
               phone: '+234 (0) 1 YYY YYY',
             },
             {
-              title: 'Training & Development',
-              email: 'training@pmo.gov.ng',
+              title: 'Project Monitoring',
+              email: 'pmoict11@gmail.com',
               phone: '+234 (0) 1 ZZZ ZZZ',
             },
           ].map((dept, index) => (

@@ -19,7 +19,7 @@ export default function ProgrammesPage() {
         'Performance review and planning',
       ],
       status: 'active',
-      startDate: '2024-01-15',
+      startDate: '2025-01-15',
       progress: 75,
     },
     {
@@ -33,7 +33,7 @@ export default function ProgrammesPage() {
         'Build stakeholder relationships',
       ],
       status: 'active',
-      startDate: '2024-02-01',
+      startDate: '2025-02-01',
       progress: 60,
     },
     {
@@ -47,12 +47,12 @@ export default function ProgrammesPage() {
         'Gather performance data',
       ],
       status: 'active',
-      startDate: '2024-01-20',
+      startDate: '2025-01-20',
       progress: 70,
     },
     {
       id: '4',
-      title: 'Inspection Exercises',
+      title: 'Book Inspection Exercises',
       description: 'Regular compliance and operational inspection programs for parastatals.',
       objectives: [
         'Ensure regulatory compliance',
@@ -61,7 +61,7 @@ export default function ProgrammesPage() {
         'Identify improvement areas',
       ],
       status: 'active',
-      startDate: '2023-12-01',
+      startDate: '2025-12-01',
       progress: 80,
     },
     {
@@ -75,8 +75,50 @@ export default function ProgrammesPage() {
         'Ensure timely delivery',
       ],
       status: 'active',
-      startDate: '2024-01-10',
+      startDate: '2025-01-10',
       progress: 65,
+    },
+    {
+      id: '6',
+      title: 'Book Inspection Exercises',
+      description: 'Regular compliance and operational inspection programs for parastatals.',
+      objectives: [
+        'Ensure regulatory compliance',
+        'Verify financial records',
+        'Assess operational standards',
+        'Identify improvement areas',
+      ],
+      status: 'upcoming',
+      startDate: '2026-06-01',
+      progress: 0,
+    },
+    {
+      id: '7',
+      title: 'Projects Monitoring Exercises',
+      description: 'Continuous monitoring of development projects and initiatives in parastatals.',
+      objectives: [
+        'Track project progress',
+        'Monitor budget utilization',
+        'Evaluate project outcomes',
+        'Ensure timely delivery',
+      ],
+      status: 'upcoming',
+      startDate: '2026-06-15',
+      progress: 0,
+    },
+    {
+      id: '8',
+      title: 'Know Your Agencies',
+      description: 'Comprehensive program to familiarize stakeholders with parastatals operations and mandates.',
+      objectives: [
+        'Understand agency mandates',
+        'Learn operational procedures',
+        'Explore agency capabilities',
+        'Build stakeholder relationships',
+      ],
+      status: 'upcoming',
+      startDate: '2026-07-01',
+      progress: 0,
     },
   ];
 
@@ -201,7 +243,7 @@ export default function ProgrammesPage() {
                 </CardDescription>
                 <div className="flex items-center gap-2 text-sm text-yellow-700 bg-yellow-50 p-3 rounded">
                   <FaRocket className="w-4 h-4" />
-                  <span>Coming June 2024</span>
+                  <span>Coming June 2026</span>
                 </div>
               </CardContent>
             </Card>
@@ -253,10 +295,10 @@ export default function ProgrammesPage() {
 
         <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-6 mt-12">
           {[
-            { stat: '20+', label: 'Active Programmes' },
-            { stat: '150+', label: 'Parastatals Reached' },
-            { stat: '5000+', label: 'Staff Trained' },
-            { stat: '₦2.5B+', label: 'Cost Savings' },
+            { stat: '50+', label: 'Active Programmes' },
+            { stat: '100+', label: 'Parastatals Reached' },
+            // { stat: '5000+', label: 'Staff Trained' },
+            // { stat: '₦2.5B+', label: 'Cost Savings' },
           ].map((impact, index) => (
             <div key={index} className="text-center">
               <div className="text-4xl font-bold text-white mb-2">

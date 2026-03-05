@@ -234,7 +234,7 @@ export default function Home() {
 
         <SectionGrid cols={3}>
           {recentNews.map((news, index) => (
-            <Link key={index} href={`/media`}>
+            <Link key={index} href={`/news`}>
               <Card hover>
                 <CardHeader>
                   <CardTitle className="text-lg line-clamp-2">{news.title}</CardTitle>
@@ -254,7 +254,7 @@ export default function Home() {
         </SectionGrid>
 
         <div className="text-center mt-12">
-          <Link href="/media">
+          <Link href="/news">
             <Button variant="primary" className="bg-red-600 hover:bg-red-700">View All News</Button>
           </Link>
         </div>

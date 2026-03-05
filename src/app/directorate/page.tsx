@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import Hero from '@/components/Hero';
 import Section, { SectionTitle, SectionSubtitle, SectionGrid } from '@/components/Section';
 import Card, { CardContent } from '@/components/Card';
@@ -9,12 +10,22 @@ export default function DirectoratePage() {
   // Leadership and Directors - PMO Organizational Structure
   const teamMembers = [
     {
-      id: '1',
-      name: 'Mrs Temitope Adebutu-Obasanjo',
-      position: 'Senior Special Assistant to the Governor (Parastatals Monitoring)',
-      bio: 'Oversees the entire PMO operation and ensures alignment with government policies and the T.H.E.M.E.S+ agenda.',
-      email: 'temitope.adebutu@lagosstate.gov.ng',
+      id: '0',
+      name: 'Ibrahim Babajide Obanikoro',
+      position: 'Special Adviser, Parastatals Monitoring',
+      bio: 'Ibrahim Babajide Obanikoro, popularly called IBO, brings expertise in parastatals monitoring with a strong background in political science and public administration. A graduate of King\'s College, Lagos, with a Bachelor of Science in Political Science from St Cloud University, Minnesota, USA, and a Master\'s degree in Public Administration (MPA) from Pace University, New York, USA.',
+      email: 'ibrahim.obanikoro@lagosstate.gov.ng',
       phone: '+234 (0) 1 XXX XXXX',
+      image: '/images/sa-image.jpg',
+    },
+    {
+      id: '1',
+      name: 'Mr. AYOOLA',
+      position: 'Permanent Secretary, Lagos State Government',
+      bio: 'Provides oversight and strategic guidance to the PMO as part of the executive governance structure.',
+      email: 'permanentsecretary@lagosstate.gov.ng',
+      phone: '+234 (0) 1 XXX XXXX',
+      image: '/images/ps-image.jpg',
     },
     {
       id: '2',
@@ -23,6 +34,7 @@ export default function DirectoratePage() {
       bio: 'Manages administrative operations and human resources development for the PMO team.',
       email: 'folashade.salako@lagosstate.gov.ng',
       phone: '+234 (0) 1 XXX XXXX',
+      image: '/images/member-2.jpg',
     },
     {
       id: '3',
@@ -31,6 +43,7 @@ export default function DirectoratePage() {
       bio: 'Leads regular inspections and compliance monitoring of state-owned enterprises.',
       email: 'modupe.aladegbemi@lagosstate.gov.ng',
       phone: '+234 (0) 1 XXX XXXX',
+      image: '/images/member-3.jpg',
     },
     {
       id: '4',
@@ -39,6 +52,7 @@ export default function DirectoratePage() {
       bio: 'Oversees monitoring of parastatals projects and ensures performance against benchmarks.',
       email: 'adeola.shinaba@lagosstate.gov.ng',
       phone: '+234 (0) 1 XXX XXXX',
+      image: '/images/member-4.jpg',
     },
     {
       id: '5',
@@ -47,6 +61,7 @@ export default function DirectoratePage() {
       bio: 'Manages financial operations and accounts for the PMO and parastatals oversight.',
       email: 'adelu.adeniyi@lagosstate.gov.ng',
       phone: '+234 (0) 1 XXX XXXX',
+      image: '/images/member-5.jpg',
     },
     {
       id: '6',
@@ -55,6 +70,7 @@ export default function DirectoratePage() {
       bio: 'Manages ICT infrastructure and digital transformation initiatives across parastatals.',
       email: 'egbinade.adeola@lagosstate.gov.ng',
       phone: '+234 (0) 1 XXX XXXX',
+      image: '/images/member-6.jpg',
     },
     {
       id: '7',
@@ -71,6 +87,7 @@ export default function DirectoratePage() {
       bio: 'Oversees procurement operations and vendor management for state enterprises.',
       email: 'adeola.adediji@lagosstate.gov.ng',
       phone: '+234 (0) 1 XXX XXXX',
+      image: '/images/member-8.jpg',
     },
     {
       id: '9',
@@ -79,14 +96,25 @@ export default function DirectoratePage() {
       bio: 'Leads strategic planning, research initiatives and data analysis for parastatals performance.',
       email: 'olawepo.motunrayo@lagosstate.gov.ng',
       phone: '+234 (0) 1 XXX XXXX',
+      image: '/images/member-9.jpg',
     },
     {
       id: '10',
+      name: 'Mrs Temitope Adebutu-Obasanjo',
+      position: 'Senior Special Assistant to the Governor (Parastatals Monitoring)',
+      bio: 'Oversees the entire PMO operation and ensures alignment with government policies and the T.H.E.M.E.S+ agenda.',
+      email: 'temitope.adebutu@lagosstate.gov.ng',
+      phone: '+234 (0) 1 XXX XXXX',
+      image: '/images/member-1.jpg',
+    },
+    {
+      id: '11',
       name: 'Mr. Adebanjo Olalekan Kazeem',
       position: 'Head, Internal Audit',
       bio: 'Manages internal audit functions ensuring accountability and compliance across the PMO.',
       email: 'adebanjo.kazeem@lagosstate.gov.ng',
       phone: '+234 (0) 1 XXX XXXX',
+      image: '/images/member-10.jpg',
     },
   ];
 
@@ -104,9 +132,12 @@ export default function DirectoratePage() {
       <Section bgColor="white">
         <div className="max-w-3xl mx-auto text-center mb-12">
           <h2 className="text-3xl font-bold text-gray-900 mb-4">
-            Experienced Leadership
+            Executive Leadership
           </h2>
-          <p className="text-lg text-gray-600 leading-relaxed">
+          <p className="text-lg text-gray-600 leading-relaxed mb-3">
+            The key personnel steering the PMO
+          </p>
+          <p className="text-gray-600 leading-relaxed">
             Our directorate comprises seasoned professionals with extensive
             experience in public administration, auditing, governance, and
             strategic management. Together, we drive the PMO&apos;s mission to
@@ -118,46 +149,55 @@ export default function DirectoratePage() {
 
       {/* Executive Leadership */}
       <Section bgColor="gray">
-        <SectionTitle center>Executive Leadership</SectionTitle>
-        <SectionSubtitle center>
-          The key personnel steering the PMO
-        </SectionSubtitle>
-
-        <div className="max-w-2xl mx-auto">
-          <Card className="border-2 border-red-600">
-            <div className="flex flex-col md:flex-row gap-6 items-center md:items-start">
-              <div className="w-32 h-32 bg-linear-to-r from-blue-400 to-blue-600 rounded-lg shrink-0" />
-              <CardContent className="grow">
-                <h3 className="text-2xl font-bold text-gray-900 mb-2">
-                  {teamMembers[0].name}
-                </h3>
-                <p className="text-blue-600 font-semibold mb-3">
-                  {teamMembers[0].position}
-                </p>
-                <p className="text-gray-600 mb-4">{teamMembers[0].bio}</p>
-                <div className="flex flex-col gap-2 text-sm">
-                  <div className="flex items-center gap-2 text-gray-600">
-                    <FaEnvelope className="text-red-600" />
-                    <a
-                      href={`mailto:${teamMembers[0].email}`}
-                      className="hover:text-red-600 transition-colors"
-                    >
-                      {teamMembers[0].email}
-                    </a>
-                  </div>
-                  <div className="flex items-center gap-2 text-gray-600">
-                    <FaPhone className="text-red-600" />
-                    <a
-                      href={`tel:${teamMembers[0].phone}`}
-                      className="hover:text-red-600 transition-colors"
-                    >
-                      {teamMembers[0].phone}
-                    </a>
-                  </div>
+        <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6">
+          {[teamMembers[0], teamMembers[1]].map((member) => (
+            <Card key={member.id} className="border-2 border-red-600">
+              <div className="flex flex-col gap-4">
+                <div className="relative w-full bg-linear-to-r from-blue-400 to-blue-600 rounded-lg overflow-hidden" style={{ aspectRatio: '3/4' }}>
+                  {member.image ? (
+                    <Image
+                      src={member.image}
+                      alt={member.name}
+                      fill
+                      className="object-cover"
+                      style={{ objectPosition: 'center 10%' }}
+                      quality={85}
+                      sizes="(max-width: 768px) 100vw, 50vw"
+                    />
+                  ) : null}
                 </div>
-              </CardContent>
-            </div>
-          </Card>
+                <CardContent>
+                  <h3 className="text-2xl font-bold text-gray-900 mb-2">
+                    {member.name}
+                  </h3>
+                  <p className="text-blue-600 font-semibold mb-3">
+                    {member.position}
+                  </p>
+                  <p className="text-gray-600 mb-4">{member.bio}</p>
+                  <div className="flex flex-col gap-2 text-sm border-t pt-3">
+                    <div className="flex items-center gap-2 text-gray-600">
+                      <FaEnvelope className="text-red-600 shrink-0" />
+                      <a
+                        href={`mailto:${member.email}`}
+                        className="hover:text-red-600 transition-colors break-all"
+                      >
+                        {member.email}
+                      </a>
+                    </div>
+                    <div className="flex items-center gap-2 text-gray-600">
+                      <FaPhone className="text-red-600 shrink-0" />
+                      <a
+                        href={`tel:${member.phone}`}
+                        className="hover:text-red-600 transition-colors"
+                      >
+                        {member.phone}
+                      </a>
+                    </div>
+                  </div>
+                </CardContent>
+              </div>
+            </Card>
+          ))}
         </div>
       </Section>
 
@@ -169,9 +209,21 @@ export default function DirectoratePage() {
         </SectionSubtitle>
 
         <SectionGrid cols={3}>
-          {teamMembers.slice(1).map((member) => (
+          {teamMembers.slice(2).map((member) => (
             <Card key={member.id} className="flex flex-col h-full">
-              <div className="w-full h-40 bg-linear-to-br from-blue-300 to-blue-500 rounded-lg mb-4" />
+              <div className="relative w-full bg-linear-to-br from-blue-300 to-blue-500 rounded-lg mb-4 overflow-hidden" style={{ aspectRatio: '3/4' }}>
+                {member.image ? (
+                  <Image
+                    src={member.image}
+                    alt={member.name}
+                    fill
+                    className="object-cover"
+                    style={{ objectPosition: 'center 10%' }}
+                    quality={85}
+                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  />
+                ) : null}
+              </div>
               <h3 className="text-lg font-bold text-gray-900 mb-1">
                 {member.name}
               </h3>
