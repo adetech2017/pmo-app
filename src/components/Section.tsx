@@ -7,18 +7,27 @@ interface SectionProps extends React.HTMLAttributes<HTMLDivElement> {
   className?: string;
   children: React.ReactNode;
   fullWidth?: boolean;
-  bgColor?: 'white' | 'gray' | 'blue';
+  bgColor?: 'white' | 'gray' | 'blue' | 'light-gray';
+  padding?: 'sm' | 'md' | 'lg' | 'xl';
 }
 
 const Section = React.forwardRef<HTMLDivElement, SectionProps>(
   (
-    { className, children, fullWidth = false, bgColor = 'white', ...props },
+    { className, children, fullWidth = false, bgColor = 'white', padding = 'lg', ...props },
     ref,
   ) => {
     const bgClasses = {
       white: 'bg-white',
       gray: 'bg-gray-50',
-      blue: 'bg-blue-600',
+      'light-gray': 'bg-gray-100',
+      blue: 'bg-gradient-to-br from-blue-600 to-blue-700',
+    };
+
+    const paddingClasses = {
+      sm: 'px-4 py-8 sm:px-6 lg:px-8',
+      md: 'px-4 py-12 sm:px-6 lg:px-8',
+      lg: 'px-4 py-16 sm:px-6 lg:px-8',
+      xl: 'px-4 py-20 sm:px-6 lg:px-8',
     };
 
     return (
@@ -27,7 +36,7 @@ const Section = React.forwardRef<HTMLDivElement, SectionProps>(
         className={classNames(bgClasses[bgColor], className)}
         {...props}
       >
-        <div className={classNames('px-4 py-12 sm:px-6 lg:px-8', !fullWidth && 'max-w-6xl mx-auto')}>
+        <div className={classNames(paddingClasses[padding], !fullWidth && 'max-w-7xl mx-auto')}>
           {children}
         </div>
       </section>
@@ -51,9 +60,9 @@ export const SectionTitle = React.forwardRef<HTMLHeadingElement, SectionTitlePro
   ({ className, children, level = 'h2', center = false, ...props }, ref) => {
     const HeadingTag = level;
     const headingClasses = {
-      h1: 'text-4xl font-bold',
-      h2: 'text-3xl font-bold',
-      h3: 'text-2xl font-bold',
+      h1: 'text-5xl sm:text-6xl font-bold tracking-tight',
+      h2: 'text-4xl sm:text-5xl font-bold tracking-tight',
+      h3: 'text-3xl sm:text-4xl font-bold',
     };
 
     return (
@@ -61,7 +70,7 @@ export const SectionTitle = React.forwardRef<HTMLHeadingElement, SectionTitlePro
         ref={ref as any}
         className={classNames(
           headingClasses[level],
-          'text-gray-900 mb-4',
+          'text-gray-900 mb-6 leading-tight',
           center && 'text-center',
           className,
         )}
@@ -87,8 +96,8 @@ export const SectionSubtitle = React.forwardRef<HTMLParagraphElement, SectionSub
     <p
       ref={ref}
       className={classNames(
-        'text-lg text-gray-600 mb-8',
-        center && 'text-center',
+        'text-lg sm:text-xl text-gray-600 mb-12 leading-relaxed max-w-2xl',
+        center && 'text-center mx-auto',
         className,
       )}
       {...props}

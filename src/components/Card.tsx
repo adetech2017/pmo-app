@@ -1,4 +1,4 @@
-// Card Component
+// Card Component - Modern Professional Design
 
 import React from 'react';
 import classNames from 'classnames';
@@ -7,16 +7,24 @@ interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
   className?: string;
   children: React.ReactNode;
   hover?: boolean;
+  variant?: 'elevated' | 'outlined' | 'flat';
 }
 
 const Card = React.forwardRef<HTMLDivElement, CardProps>(
-  ({ className, hover = false, children, ...props }, ref) => {
+  ({ className, hover = false, children, variant = 'elevated', ...props }, ref) => {
+    const variantClasses = {
+      elevated: 'bg-white rounded-xl shadow-sm hover:shadow-md border border-gray-100',
+      outlined: 'bg-white rounded-xl border-2 border-gray-200 hover:border-blue-300',
+      flat: 'bg-gray-50 rounded-xl border border-gray-200',
+    };
+
     return (
       <div
         ref={ref}
         className={classNames(
-          'bg-white rounded-lg shadow-md p-6 transition-shadow',
-          hover && 'hover:shadow-lg cursor-pointer',
+          'p-6 transition-all duration-200',
+          variantClasses[variant],
+          hover && 'hover:shadow-lg cursor-pointer hover:-translate-y-0.5',
           className,
         )}
         {...props}
@@ -61,7 +69,7 @@ export const CardTitle = React.forwardRef<HTMLHeadingElement, CardTitleProps>(
   ({ className, children, ...props }, ref) => (
     <h3
       ref={ref}
-      className={classNames('text-xl font-semibold text-gray-900', className)}
+      className={classNames('text-lg font-bold text-gray-900 mb-2', className)}
       {...props}
     >
       {children}
@@ -81,7 +89,7 @@ export const CardDescription = React.forwardRef<HTMLParagraphElement, CardDescri
   ({ className, children, ...props }, ref) => (
     <p
       ref={ref}
-      className={classNames('text-gray-600 text-sm', className)}
+      className={classNames('text-gray-600 text-sm leading-relaxed', className)}
       {...props}
     >
       {children}

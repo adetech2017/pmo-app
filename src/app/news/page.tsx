@@ -116,45 +116,46 @@ The initiative underscores the Lagos State Government's continued resolve to bui
           Recent news, press releases, and announcements from the PMO
         </SectionSubtitle>
 
-        <div className="max-w-4xl mx-auto mb-12">
+        <div className="max-w-5xl mx-auto mb-16">
           {/* Featured Story */}
           {newsItems.length > 0 && (
-            <Card className="mb-12 border-2 border-blue-600 overflow-hidden">
+            <Card variant="elevated" className="mb-16 overflow-hidden hover:shadow-xl group hover:-translate-y-1">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-0">
                 {newsItems[0].image && (
-                  <div className="relative h-64 md:h-auto">
+                  <div className="relative h-64 md:h-80 overflow-hidden">
                     <Image
                       src={newsItems[0].image}
                       alt={newsItems[0].title}
                       fill
-                      className="object-cover"
+                      className="object-cover group-hover:scale-105 transition-transform duration-500"
                       priority
                     />
+                    <div className="absolute inset-0 bg-gradient-to-r from-black/20 to-transparent"></div>
                   </div>
                 )}
-                <div className="p-6 flex flex-col justify-between">
+                <div className="p-8 md:p-10 flex flex-col justify-between bg-white">
                   <div>
-                    <div className="inline-block bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-xs font-semibold mb-3">
-                      Featured
+                    <div className="inline-block bg-gradient-to-r from-blue-100 to-blue-50 text-blue-700 px-4 py-1.5 rounded-full text-xs font-bold mb-4 uppercase tracking-wider">
+                      ⭐ Featured Story
                     </div>
-                    <h2 className="text-2xl font-bold text-gray-900 mb-3">
+                    <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 leading-tight">
                       {newsItems[0].title}
                     </h2>
-                    <p className="text-gray-600 mb-4">{newsItems[0].excerpt}</p>
-                    <div className="flex flex-wrap gap-4 text-sm text-gray-500">
-                      <div className="flex items-center gap-1">
-                        <FaCalendarAlt className="text-blue-600" />
-                        {formatDate(newsItems[0].date)}
+                    <p className="text-gray-600 mb-6 leading-relaxed text-lg">{newsItems[0].excerpt}</p>
+                    <div className="flex flex-wrap gap-6 text-sm text-gray-500 font-medium">
+                      <div className="flex items-center gap-2">
+                        <FaCalendarAlt className="text-blue-600 text-base" />
+                        <span>{formatDate(newsItems[0].date)}</span>
                       </div>
-                      <div className="flex items-center gap-1">
-                        <FaUser className="text-blue-600" />
-                        {newsItems[0].author}
+                      <div className="flex items-center gap-2">
+                        <FaUser className="text-blue-600 text-base" />
+                        <span>{newsItems[0].author}</span>
                       </div>
                     </div>
                   </div>
-                  <Link href={`/news/${newsItems[0].slug}`} className="inline-block mt-4">
-                    <Button variant="primary" className="mt-4">
-                      Read Full Story
+                  <Link href={`/news/${newsItems[0].slug}`} className="inline-block mt-8">
+                    <Button variant="primary" size="lg">
+                      Read Full Story →
                     </Button>
                   </Link>
                 </div>
@@ -165,31 +166,31 @@ The initiative underscores the Lagos State Government's continued resolve to bui
           {/* News Grid */}
           <SectionGrid cols={2}>
             {newsItems.slice(1).map((news) => (
-              <Card key={news.id} className="flex flex-col h-full hover:shadow-lg transition-shadow">
-                <CardHeader>
-                  <div className="flex items-start justify-between gap-3 mb-2">
-                    <CardTitle className="text-lg grow">{news.title}</CardTitle>
-                    <span className="inline-block bg-gray-100 text-gray-700 px-2 py-1 rounded text-xs font-semibold whitespace-nowrap shrink-0">
+              <Card key={news.id} variant="elevated" className="flex flex-col h-full overflow-hidden group hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+                <CardHeader className="pb-0">
+                  <div className="flex items-start justify-between gap-3 mb-4">
+                    <span className="inline-block bg-gradient-to-r from-blue-100 to-blue-50 text-blue-700 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider whitespace-nowrap shrink-0">
                       {news.category}
                     </span>
                   </div>
+                  <CardTitle className="text-xl group-hover:text-blue-600 transition-colors duration-300">{news.title}</CardTitle>
                 </CardHeader>
-                <CardContent className="grow">
-                  <CardDescription className="mb-4">{news.excerpt}</CardDescription>
-                  <div className="flex flex-col gap-2 text-xs text-gray-500">
-                    <div className="flex items-center gap-1">
-                      <FaCalendarAlt className="text-blue-600" />
+                <CardContent className="grow mt-4">
+                  <CardDescription className="mb-6 line-clamp-3">{news.excerpt}</CardDescription>
+                  <div className="flex flex-col gap-3 text-sm text-gray-600 font-medium">
+                    <div className="flex items-center gap-2">
+                      <FaCalendarAlt className="text-blue-600 text-base" />
                       {formatDate(news.date)}
                     </div>
-                    <div className="flex items-center gap-1">
-                      <FaUser className="text-blue-600" />
+                    <div className="flex items-center gap-2">
+                      <FaUser className="text-blue-600 text-base" />
                       {news.author}
                     </div>
                   </div>
                 </CardContent>
-                <CardFooter>
-                  <Link href={`/news/${news.slug}`}>
-                    <Button variant="ghost" className="text-blue-600 hover:text-blue-700 p-0">
+                <CardFooter className="mt-auto">
+                  <Link href={`/news/${news.slug}`} className="w-full">
+                    <Button variant="ghost" className="w-full text-blue-600 hover:text-blue-700 hover:bg-blue-50 p-0 justify-start">
                       Read More →
                     </Button>
                   </Link>
@@ -201,80 +202,93 @@ The initiative underscores the Lagos State Government's continued resolve to bui
       </Section>
 
       {/* Content Categories Section */}
-      <Section bgColor="gray">
-        <SectionTitle center>Content Categories</SectionTitle>
+      <Section bgColor="light-gray" padding="xl">
+        <div className="text-center mb-16">
+          <SectionTitle center>Content Categories</SectionTitle>
+          <SectionSubtitle center>
+            Explore our comprehensive collection of news and updates
+          </SectionSubtitle>
+        </div>
 
-        <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
           {[
             {
               title: 'Press Releases',
               count: '15+',
               description: 'Official statements and announcements from PMO',
+              icon: '📰',
             },
             {
               title: 'Reports',
               count: '8+',
               description: 'Comprehensive performance reviews and analyses',
+              icon: '📊',
             },
             {
               title: 'News Articles',
               count: '30+',
               description: 'Recent developments and organizational updates',
+              icon: '📢',
             },
           ].map((category, index) => (
-            <Card key={index} className="text-center">
-              <h3 className="text-3xl font-bold text-blue-600 mb-2">
+            <Card key={index} variant="elevated" className="text-center hover:shadow-xl hover:-translate-y-1 group transition-all duration-300">
+              <div className="text-4xl mb-4 group-hover:scale-110 transition-transform duration-300">{category.icon}</div>
+              <h3 className="text-4xl font-bold bg-gradient-to-r from-blue-600 to-blue-700 bg-clip-text text-transparent mb-3">
                 {category.count}
               </h3>
-              <h4 className="text-lg font-semibold text-gray-900 mb-2">
+              <h4 className="text-lg font-bold text-gray-900 mb-2">
                 {category.title}
               </h4>
-              <p className="text-sm text-gray-600">{category.description}</p>
+              <p className="text-sm text-gray-600 leading-relaxed">{category.description}</p>
             </Card>
           ))}
         </div>
       </Section>
 
       {/* Newsletter Signup Section */}
-      <Section bgColor="blue">
-        <div className="max-w-2xl mx-auto text-center">
-          <h2 className="text-3xl font-bold text-white mb-4">
-            Stay Updated
+      <Section bgColor="blue" padding="xl">
+        <div className="max-w-3xl mx-auto text-center">
+          <h2 className="text-4xl font-bold text-white mb-6">
+            Stay Updated With PMO
           </h2>
-          <p className="text-blue-100 mb-8">
+          <p className="text-blue-100 mb-10 text-lg leading-relaxed">
             Subscribe to our newsletter to receive the latest news, updates, and
-            announcements directly to your inbox.
+            announcements directly to your inbox. Stay informed about PMO initiatives.
           </p>
-          <form className="flex flex-col sm:flex-row gap-3">
+          <form className="flex flex-col sm:flex-row gap-3 mb-6">
             <input
               type="email"
               placeholder="Enter your email address"
-              className="grow px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+              className="grow px-5 py-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-blue-600 text-gray-900 font-medium"
               required
             />
-            <Button variant="primary" size="lg" className="bg-white text-blue-700 hover:bg-gray-100 px-8">
+            <Button variant="primary" size="lg" className="bg-white text-blue-700 hover:bg-gray-100 px-8 font-bold">
               Subscribe
             </Button>
           </form>
-          <p className="text-blue-100 text-sm mt-4">
-            We respect your privacy. Unsubscribe at any time.
+          <p className="text-blue-100 text-sm">
+            ✓ We respect your privacy. Unsubscribe at any time.
           </p>
         </div>
       </Section>
 
       {/* Archives Section */}
-      <Section bgColor="white">
-        <SectionTitle center>News Archive</SectionTitle>
-        <SectionSubtitle center>
-          Browse all news items by year
-        </SectionSubtitle>
+      <Section bgColor="white" padding="xl">
+        <div className="text-center mb-16">
+          <SectionTitle center>News Archive</SectionTitle>
+          <SectionSubtitle center>
+            Browse all news items by year and stay connected to our history
+          </SectionSubtitle>
+        </div>
 
-        <div className="max-w-3xl mx-auto">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            {['2024', '2023', '2022', '2021'].map((year) => (
-              <Card key={year} className="text-center cursor-pointer hover:shadow-lg transition-shadow">
-                <h3 className="text-3xl font-bold text-blue-600">{year}</h3>
-                <p className="text-sm text-gray-600 mt-2">View archives</p>
+        <div className="max-w-4xl mx-auto">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+            {['2026', '2025', '2024', '2023'].map((year) => (
+              <Card key={year} variant="outlined" className="text-center cursor-pointer hover:shadow-lg hover:border-blue-400 transition-all duration-300 group">
+                <h3 className="text-4xl font-bold bg-gradient-to-r from-blue-600 to-blue-700 bg-clip-text text-transparent group-hover:scale-110 transition-transform duration-300">
+                  {year}
+                </h3>
+                <p className="text-sm text-gray-600 mt-3 font-medium group-hover:text-blue-600 transition-colors">View Archives →</p>
               </Card>
             ))}
           </div>
