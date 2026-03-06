@@ -316,7 +316,7 @@ export default function GalleryPage() {
             </button>
 
             {/* Main Container */}
-            <div className="relative w-full max-w-3xl flex-shrink-0">
+            <div className="relative w-full max-w-3xl shrink-0">
               {/* Close Button */}
               <button
                 onClick={() => setSelectedImage(null)}
@@ -332,7 +332,7 @@ export default function GalleryPage() {
                   alt={`Full view of ${selectedImage.title} - ${selectedImage.description}`}
                   width={1200}
                   height={800}
-                  className="object-contain w-full h-auto max-h-[500px] md:max-h-[600px]"
+                  className="object-contain w-full h-auto max-h-125 md:max-h-150]"
                   onContextMenu={handleContextMenu}
                   onDragStart={handleDragStart}
                   draggable={false}

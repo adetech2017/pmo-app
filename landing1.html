@@ -1,0 +1,1186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>LACSC — Lagos State Civil Service Commission</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=EB+Garamond:wght@400;500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    /* ════════════════════════════════════
+       LAGOS STATE OFFICIAL COLOUR SYSTEM
+       Drawn from the Lagos Coat of Arms:
+         Red    #C41230  (shield left)
+         Amber  #D97706  (shield right)
+         Blue   #1A4E8A  (water / sky)
+         Green  #1B5E20  (palm trees)
+         Ivory  #FAF6EE  (page ground)
+    ════════════════════════════════════ */
+    :root {
+      --red:      #C41230;
+      --red-dk:   #8B0D22;
+      --red-lt:   #f4d0d6;
+      --amber:    #D97706;
+      --amber-lt: #FDE68A;
+      --blue:     #1A4E8A;
+      --blue-lt:  #DBEAFE;
+      --green:    #1B5E20;
+      --green-lt: #DCFCE7;
+      --ivory:    #FAF6EE;
+      --cream:    #F3EDE0;
+      --ink:      #1A1109;
+      --muted:    #6B5F4E;
+      --rule:     #DDD5C2;
+      --white:    #FFFFFF;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--ivory);
+      color: var(--ink);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      font-size: 15px;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* ══════════════════════════════════
+       GOVERNMENT TOP BAR
+    ══════════════════════════════════ */
+    .gov-bar {
+      background: var(--red-dk);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 2.5rem;
+      height: 36px;
+      font-size: 11px;
+      letter-spacing: .07em;
+    }
+    .gov-bar__left { display: flex; align-items: center; gap: 10px; }
+    .flag-strip { display: flex; height: 14px; width: 22px; border-radius: 2px; overflow: hidden; }
+    .flag-strip span { flex: 1; }
+    .flag-strip span:nth-child(1) { background: #008751; }
+    .flag-strip span:nth-child(2) { background: #fff; }
+    .flag-strip span:nth-child(3) { background: #008751; }
+    .gov-bar__right { font-size: 10.5px; opacity: .7; }
+
+    /* ══════════════════════════════════
+       AMBER NOTICE STRIP
+    ══════════════════════════════════ */
+    .notice-strip {
+      background: var(--amber);
+      color: #3b2000;
+      text-align: center;
+      padding: 7px 1rem;
+      font-family: 'EB Garamond', serif;
+      font-size: 13.5px;
+      font-weight: 500;
+      letter-spacing: .03em;
+    }
+
+    /* ══════════════════════════════════
+       MASTHEAD
+    ══════════════════════════════════ */
+    .masthead {
+      background: var(--red);
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      padding: 1.8rem 2.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .masthead::after {
+      content: '';
+      position: absolute;
+      right: -40px; top: -40px;
+      width: 260px; height: 260px;
+      background: var(--amber);
+      opacity: .12;
+      transform: rotate(35deg);
+      border-radius: 18px;
+      pointer-events: none;
+    }
+
+    .seal-wrap {
+      flex-shrink: 0;
+      width: 88px; height: 88px;
+      border-radius: 50%;
+      background: #fff;
+      border: 3px solid var(--amber);
+      padding: 5px;
+      box-shadow: 0 0 0 6px rgba(217,119,6,.2);
+      display: flex; align-items: center; justify-content: center;
+      overflow: hidden;
+    }
+    .seal-wrap img {
+      width: 100%; height: 100%;
+      object-fit: contain;
+      mix-blend-mode: multiply;
+      filter: drop-shadow(0 1px 3px rgba(0,0,0,.25));
+    }
+
+    .masthead__copy { flex: 1; }
+    .masthead__overline {
+      font-size: 10.5px;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--amber-lt);
+      font-weight: 400;
+      margin-bottom: 4px;
+    }
+    .masthead__title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.3rem, 3vw, 2rem);
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.1;
+    }
+    .masthead__title em { font-style: italic; color: var(--amber-lt); }
+    .masthead__sub {
+      margin-top: 5px;
+      font-size: 11.5px;
+      color: rgba(255,255,255,.5);
+      letter-spacing: .05em;
+    }
+    .masthead__actions {
+      display: flex; flex-direction: column;
+      gap: 10px; align-items: flex-end; flex-shrink: 0;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 10px 26px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      cursor: pointer;
+      border: none;
+      transition: all .2s;
+    }
+    .btn--amber { background: var(--amber); color: #3b2000; }
+    .btn--amber:hover { background: var(--amber-lt); }
+    .btn--ghost { background: transparent; color: #fff; border: 1.5px solid rgba(255,255,255,.4); }
+    .btn--ghost:hover { border-color: var(--amber-lt); color: var(--amber-lt); }
+
+    /* ══════════════════════════════════
+       NAVIGATION
+    ══════════════════════════════════ */
+    .nav {
+      background: var(--white);
+      border-bottom: 4px solid var(--blue);
+      padding: 0 2.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky; top: 0; z-index: 100;
+      box-shadow: 0 2px 12px rgba(0,0,0,.07);
+    }
+    .nav__links { display: flex; list-style: none; }
+    .nav__links li a {
+      display: block;
+      padding: 13px 17px;
+      font-size: 12.5px;
+      font-weight: 500;
+      letter-spacing: .04em;
+      color: var(--ink);
+      text-decoration: none;
+      border-bottom: 4px solid transparent;
+      margin-bottom: -4px;
+      transition: all .2s;
+    }
+    .nav__links li a:hover,
+    .nav__links li a.active { border-bottom-color: var(--red); color: var(--red); }
+    .nav__badge {
+      background: var(--red);
+      color: #fff;
+      font-size: 10px;
+      padding: 2px 8px;
+      border-radius: 100px;
+      letter-spacing: .06em;
+    }
+
+    /* ══════════════════════════════════
+       HERO — FULL BLEED CINEMATIC
+    ══════════════════════════════════ */
+    .hero {
+      position: relative;
+      min-height: 88vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      overflow: hidden;
+      background:
+        /* red-to-dark-blue diagonal gradient */
+        linear-gradient(135deg,
+          #0d0509 0%,
+          #1a0812 18%,
+          #0e1e3d 55%,
+          #091428 100%);
+    }
+
+    /* ── Coat of arms watermark ── */
+    .hero__watermark {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .hero__watermark img {
+      width: min(520px, 70vw);
+      opacity: .07;
+      filter: grayscale(1) contrast(1.2);
+      animation: slowPulse 8s ease-in-out infinite;
+    }
+    @keyframes slowPulse {
+      0%, 100% { opacity: .07; transform: scale(1); }
+      50%       { opacity: .10; transform: scale(1.03); }
+    }
+
+    /* ── Decorative geometric lines ── */
+    .hero__geo {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+    .hero__geo svg { width: 100%; height: 100%; }
+
+    /* ── Amber diagonal accent band ── */
+    .hero__accent-band {
+      position: absolute;
+      top: 0; right: 0;
+      width: 3px;
+      height: 100%;
+      background: linear-gradient(to bottom, var(--amber), transparent);
+      z-index: 1;
+    }
+    .hero__accent-band-2 {
+      position: absolute;
+      top: 0; right: 5px;
+      width: 1px;
+      height: 60%;
+      background: linear-gradient(to bottom, rgba(217,119,6,.4), transparent);
+      z-index: 1;
+    }
+
+    /* ── Red top accent ── */
+    .hero__red-top {
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 4px;
+      background: linear-gradient(to right, var(--red), var(--amber), transparent);
+      z-index: 2;
+    }
+
+    /* ── Hero content ── */
+    .hero__content {
+      position: relative;
+      z-index: 3;
+      display: grid;
+      grid-template-columns: 1fr 360px;
+      gap: 3rem;
+      align-items: end;
+      padding: 5rem 3.5rem 0;
+      max-width: 1280px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .hero__left { padding-bottom: 3.5rem; }
+
+    /* Live badge */
+    .hero__live-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(196,18,48,.2);
+      border: 1px solid rgba(196,18,48,.5);
+      border-radius: 100px;
+      padding: 5px 14px 5px 8px;
+      margin-bottom: 2rem;
+      backdrop-filter: blur(8px);
+      animation: heroFadeUp .7s .1s ease both;
+    }
+    .live-dot {
+      width: 8px; height: 8px;
+      background: var(--amber);
+      border-radius: 50%;
+      box-shadow: 0 0 0 3px rgba(217,119,6,.3);
+      animation: livePulse 1.6s ease-in-out infinite;
+    }
+    @keyframes livePulse {
+      0%, 100% { box-shadow: 0 0 0 3px rgba(217,119,6,.3); }
+      50%       { box-shadow: 0 0 0 6px rgba(217,119,6,.1); }
+    }
+    .live-text {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: var(--amber-lt);
+    }
+
+    /* Hero headline */
+    .hero__headline {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.8rem, 5.5vw, 5rem);
+      line-height: 1.1;
+      color: #fff;
+      margin-bottom: 1.6rem;
+      animation: heroFadeUp .7s .25s ease both;
+    }
+    .hero__headline em {
+      font-style: italic;
+      color: var(--amber-lt);
+      display: block;
+    }
+    .hero__headline strong {
+      font-weight: 700;
+      color: #fff;
+      -webkit-text-stroke: 0px;
+    }
+
+    /* Divider rule */
+    .hero__rule {
+      width: 60px;
+      height: 3px;
+      background: linear-gradient(to right, var(--amber), var(--red));
+      margin-bottom: 1.5rem;
+      animation: heroFadeUp .7s .35s ease both;
+    }
+
+    .hero__body {
+      font-family: 'EB Garamond', serif;
+      font-size: 19px;
+      color: rgba(255,255,255,.7);
+      max-width: 540px;
+      margin-bottom: 2.2rem;
+      line-height: 1.75;
+      animation: heroFadeUp .7s .45s ease both;
+    }
+
+    .hero__cta {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      animation: heroFadeUp .7s .55s ease both;
+    }
+    .btn--primary {
+      background: var(--red);
+      color: #fff;
+      box-shadow: 0 6px 24px rgba(196,18,48,.45);
+    }
+    .btn--primary:hover {
+      background: var(--red-dk);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 32px rgba(196,18,48,.55);
+    }
+    .btn--outline-hero {
+      background: rgba(255,255,255,.07);
+      color: #fff;
+      border: 1.5px solid rgba(255,255,255,.3);
+      backdrop-filter: blur(8px);
+    }
+    .btn--outline-hero:hover {
+      background: rgba(255,255,255,.14);
+      border-color: var(--amber-lt);
+      color: var(--amber-lt);
+    }
+
+    /* Trust badges row */
+    .hero__trust {
+      display: flex;
+      gap: 1.5rem;
+      margin-top: 2.2rem;
+      animation: heroFadeUp .7s .65s ease both;
+    }
+    .trust-item {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 12px;
+      color: rgba(255,255,255,.5);
+      letter-spacing: .04em;
+    }
+    .trust-item svg { color: var(--amber); flex-shrink: 0; }
+
+    /* Right panel — How to Apply card */
+    .hero__right {
+      animation: heroFadeUp .7s .3s ease both;
+      align-self: end;
+    }
+    .apply-card {
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.12);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-radius: 2px;
+      overflow: hidden;
+      margin-bottom: -4rem; /* overlap into stats band */
+      position: relative;
+      z-index: 10;
+      box-shadow: 0 24px 64px rgba(0,0,0,.45);
+    }
+    .apply-card__header {
+      background: var(--amber);
+      padding: .9rem 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .apply-card__header-icon {
+      width: 28px; height: 28px;
+      background: rgba(0,0,0,.15);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 13px;
+    }
+    .apply-card__title {
+      font-family: 'Playfair Display', serif;
+      font-size: .95rem;
+      font-weight: 700;
+      color: #3b2000;
+    }
+    .apply-card__body { padding: 1.4rem 1.5rem; }
+
+    .step-list { list-style: none; counter-reset: s; }
+    .step-list li {
+      counter-increment: s;
+      display: flex; align-items: flex-start; gap: 11px;
+      padding: 8px 0;
+      border-bottom: 1px solid rgba(255,255,255,.07);
+      font-size: 13px;
+      color: rgba(255,255,255,.82);
+    }
+    .step-list li:last-child { border-bottom: none; }
+    .step-list li::before {
+      content: counter(s);
+      width: 22px; height: 22px;
+      background: var(--amber);
+      color: #3b2000;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 11px; font-weight: 700;
+      flex-shrink: 0; margin-top: 1px;
+    }
+    .apply-card__footer {
+      padding: .8rem 1.5rem 1.2rem;
+      background: rgba(196,18,48,.15);
+      border-top: 1px solid rgba(196,18,48,.2);
+    }
+    .apply-card__warning {
+      font-size: 11.5px;
+      color: var(--amber-lt);
+      font-family: 'EB Garamond', serif;
+      line-height: 1.5;
+    }
+
+    @keyframes heroFadeUp {
+      from { opacity: 0; transform: translateY(22px); }
+      to   { opacity: 1; transform: none; }
+    }
+
+    /* ── Stats band (overlapped by card) ── */
+    .stats-band {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      border-bottom: 1px solid var(--rule);
+      padding-top: 5rem; /* space for overlapping card on right */
+      background: var(--white);
+    }
+    .stat {
+      padding: 2rem 1.5rem;
+      text-align: center;
+      border-right: 1px solid var(--rule);
+      animation: fadeUp .5s ease both;
+    }
+    .stat:last-child { border-right: none; }
+    .stat__num {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.6rem;
+      font-weight: 700;
+      line-height: 1;
+      color: var(--red);
+      margin-bottom: .2rem;
+    }
+    .stat__num sup { font-size: 1rem; color: var(--amber); }
+    .stat__label {
+      font-size: 11.5px;
+      letter-spacing: .09em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    /* Placeholder for removed sidebar__alert */
+    .sidebar__alert {
+      margin-top: 1.5rem;
+      padding: 12px;
+      background: rgba(196,18,48,.2);
+      border-left: 3px solid var(--amber);
+      font-size: 12px;
+      color: var(--amber-lt);
+      font-family: 'EB Garamond', serif;
+      line-height: 1.55;
+    }
+
+    /* ══════════════════════════════════
+       LAYOUT WRAPPER
+    ══════════════════════════════════ */
+    .layout { max-width: 1120px; margin: 0 auto; padding: 0 2.5rem; }
+
+    /* ══════════════════════════════════
+       GOVERNOR QUOTE
+    ══════════════════════════════════ */
+    .quote-band {
+      background: var(--cream);
+      border-top: 4px solid var(--red);
+      border-bottom: 1px solid var(--rule);
+      padding: 2rem 2.5rem;
+      display: flex;
+      gap: 2rem;
+      align-items: flex-start;
+    }
+    .quote-band__seal {
+      flex-shrink: 0;
+      width: 58px; height: 58px;
+      border-radius: 50%;
+      background: var(--white);
+      border: 2px solid var(--amber);
+      padding: 3px;
+      overflow: hidden;
+    }
+    .quote-band__seal img { width: 100%; height: 100%; object-fit: contain; mix-blend-mode: multiply; }
+    .quote-band__mark {
+      font-family: 'Playfair Display', serif;
+      font-size: 5rem;
+      color: var(--red);
+      opacity: .25;
+      line-height: .7;
+      flex-shrink: 0;
+    }
+    .quote-band__body {
+      font-family: 'EB Garamond', serif;
+      font-size: 18px;
+      color: var(--ink);
+      line-height: 1.65;
+      font-style: italic;
+    }
+    .quote-band__attr {
+      margin-top: .6rem;
+      font-size: 12px;
+      letter-spacing: .08em;
+      color: var(--muted);
+    }
+
+    /* ══════════════════════════════════
+       SECTION HEADER
+    ══════════════════════════════════ */
+    .section-head {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      padding: 2.5rem 0 1.2rem;
+      border-bottom: 3px solid var(--red);
+      margin-bottom: 2rem;
+    }
+    .section-head__title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.55rem;
+      font-weight: 700;
+      color: var(--blue);
+    }
+    .section-head__sub { font-size: 12px; color: var(--muted); }
+    .section-head__count {
+      font-family: 'Playfair Display', serif;
+      font-size: .95rem;
+      color: var(--red);
+    }
+
+    /* ══════════════════════════════════
+       VACANCY CARDS
+    ══════════════════════════════════ */
+    .vacancies-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(295px, 1fr));
+      gap: 1.4rem;
+      margin-bottom: 2.5rem;
+    }
+    .vcard {
+      background: var(--white);
+      border: 1px solid var(--rule);
+      position: relative;
+      overflow: hidden;
+      transition: box-shadow .25s, transform .25s;
+      animation: fadeUp .5s ease both;
+    }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: none; }
+    }
+    .vcard:nth-child(1) { animation-delay: .06s; }
+    .vcard:nth-child(2) { animation-delay: .13s; }
+    .vcard:nth-child(3) { animation-delay: .20s; }
+    .vcard:nth-child(4) { animation-delay: .27s; }
+    .vcard:hover { box-shadow: 0 10px 36px rgba(196,18,48,.12); transform: translateY(-4px); }
+
+    .vcard__top { height: 5px; }
+    .vcard--red .vcard__top   { background: var(--red); }
+    .vcard--amber .vcard__top { background: var(--amber); }
+    .vcard--blue .vcard__top  { background: var(--blue); }
+    .vcard--green .vcard__top { background: var(--green); }
+
+    .vcard__body { padding: 1.5rem 1.5rem 1rem; }
+    .vcard__ref {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: .6rem;
+    }
+    .vcard__refnum { font-size: 10px; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
+
+    .badge {
+      display: inline-block;
+      padding: 3px 9px;
+      font-size: 10px; font-weight: 600;
+      letter-spacing: .07em; text-transform: uppercase;
+      border-radius: 100px;
+    }
+    .badge--urgent  { background: #fef2f2; color: var(--red); border: 1px solid #fca5a5; }
+    .badge--open    { background: var(--green-lt); color: var(--green); border: 1px solid #86efac; }
+    .badge--closing { background: #fffbeb; color: #92400e; border: 1px solid #fcd34d; }
+
+    .vcard__title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem; font-weight: 600;
+      color: var(--blue);
+      margin-bottom: .5rem; line-height: 1.3;
+    }
+    .vcard__desc { font-size: 13px; color: var(--muted); margin-bottom: 1rem; line-height: 1.6; }
+    .vcard__meta { display: flex; flex-direction: column; gap: 5px; margin-bottom: 1rem; }
+    .meta-row {
+      display: flex; align-items: center; gap: 7px;
+      font-size: 12px; color: var(--muted);
+    }
+    .meta-row svg { flex-shrink: 0; color: var(--red); }
+
+    .vcard__footer {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: .9rem 1.5rem 1.2rem;
+      border-top: 1px solid var(--rule);
+    }
+    .days-left__num { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 700; color: var(--ink); line-height: 1; }
+    .days-left__label { font-size: 10.5px; color: var(--muted); letter-spacing: .06em; text-transform: uppercase; }
+
+    .btn--apply {
+      background: var(--red); color: #fff;
+      padding: 9px 20px;
+      font-size: 11.5px; font-weight: 600;
+      letter-spacing: .09em; text-transform: uppercase;
+      text-decoration: none;
+      border: 2px solid var(--red);
+      transition: all .2s;
+      font-family: 'DM Sans', sans-serif;
+    }
+    .btn--apply:hover { background: transparent; color: var(--red); }
+
+    /* ══════════════════════════════════
+       REQUIREMENTS
+    ══════════════════════════════════ */
+    .requirements {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin-bottom: 3rem;
+    }
+    .req-card {
+      background: var(--white);
+      border: 1px solid var(--rule);
+      border-left: 4px solid var(--blue);
+      padding: 1.5rem 1.6rem;
+    }
+    .req-card--amber { border-left-color: var(--amber); }
+    .req-card__title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem; font-weight: 700;
+      color: var(--blue); margin-bottom: .8rem;
+    }
+    .req-card--amber .req-card__title { color: #92400e; }
+    .req-list { list-style: none; }
+    .req-list li {
+      display: flex; align-items: flex-start; gap: 8px;
+      font-size: 13px; color: var(--muted);
+      padding: 5px 0;
+      border-bottom: 1px solid var(--rule);
+    }
+    .req-list li:last-child { border-bottom: none; }
+    .req-list li::before { content: '✓'; color: var(--green); font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+
+    /* ══════════════════════════════════
+       FOOTER
+    ══════════════════════════════════ */
+    footer {
+      background: var(--blue);
+      color: rgba(255,255,255,.65);
+      padding: 2.5rem 2.5rem 1.5rem;
+      margin-top: 1rem;
+    }
+    .footer__inner { max-width: 1120px; margin: 0 auto; }
+    .footer__grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 3rem;
+      margin-bottom: 2rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid rgba(255,255,255,.12);
+    }
+    .footer__brand-wrap { display: flex; align-items: center; gap: 14px; margin-bottom: 1rem; }
+    .footer__seal {
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      background: var(--white);
+      padding: 3px;
+      overflow: hidden; flex-shrink: 0;
+    }
+    .footer__seal img { width: 100%; height: 100%; object-fit: contain; mix-blend-mode: multiply; }
+    .footer__brand { font-family: 'Playfair Display', serif; font-size: 1rem; color: #fff; font-weight: 700; line-height: 1.3; }
+    .footer__tagline { font-family: 'EB Garamond', serif; font-size: 14px; font-style: italic; line-height: 1.65; }
+    .footer__heading { font-size: 10.5px; letter-spacing: .14em; text-transform: uppercase; color: var(--amber-lt); margin-bottom: .8rem; font-weight: 600; }
+    .footer__links { list-style: none; }
+    .footer__links li { margin-bottom: 6px; }
+    .footer__links a { color: rgba(255,255,255,.55); text-decoration: none; font-size: 13px; transition: color .15s; }
+    .footer__links a:hover { color: var(--amber-lt); }
+    .footer__bottom {
+      display: flex; justify-content: space-between;
+      font-size: 11px; color: rgba(255,255,255,.35);
+    }
+    .footer__bottom a { color: rgba(255,255,255,.45); text-decoration: none; }
+
+    /* ══════════════════════════════════
+       RESPONSIVE
+    ══════════════════════════════════ */
+    @media (max-width: 900px) {
+      .gov-bar, .masthead { padding-left: 1.2rem; padding-right: 1.2rem; }
+      .nav { display: none; }
+      .masthead { flex-wrap: wrap; gap: 1rem; }
+      .masthead__actions { flex-direction: row; width: 100%; }
+      .hero__content { grid-template-columns: 1fr; padding: 3rem 1.2rem 0; }
+      .hero__right { display: none; }
+      .hero { min-height: auto; }
+      .hero__headline { font-size: 2.4rem; }
+      .stats-band { grid-template-columns: repeat(2, 1fr); padding-top: 1.5rem; }
+      .layout { padding: 0 1.2rem; }
+      .requirements { grid-template-columns: 1fr; }
+      .footer__grid { grid-template-columns: 1fr; gap: 1.5rem; }
+      .footer__bottom { flex-direction: column; gap: .5rem; }
+      .quote-band { flex-wrap: wrap; padding: 1.5rem 1.2rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Government Top Bar -->
+  <div class="gov-bar">
+    <div class="gov-bar__left">
+      <div class="flag-strip"><span></span><span></span><span></span></div>
+      <span>FEDERAL REPUBLIC OF NIGERIA &mdash; LAGOS STATE GOVERNMENT</span>
+    </div>
+    <div class="gov-bar__right">Official Portal &nbsp;|&nbsp; Ref: LSG/LACSC/2025</div>
+  </div>
+
+  <!-- Notice Strip -->
+  <div class="notice-strip">
+    <strong>Official Notice:</strong> This exercise is entirely free of charge. No fees are payable at any stage. Beware of fraudsters.
+  </div>
+
+  <!-- Masthead -->
+  <header class="masthead">
+    <div class="seal-wrap">
+      <img src="Lagos_Seal.png" alt="Lagos State Coat of Arms" />
+    </div>
+    <div class="masthead__copy">
+      <div class="masthead__overline">Lagos State Government &mdash; Est. 1967 &nbsp;&bull;&nbsp; Justice and Progress</div>
+      <h1 class="masthead__title">Lagos State <em>Civil Service</em> Commission</h1>
+      <div class="masthead__sub">Recruitment &amp; Appointments Portal &nbsp;&bull;&nbsp; 2025 Exercise &nbsp;&bull;&nbsp; Eko Oni Baje</div>
+    </div>
+    <div class="masthead__actions">
+      <a href="/Account/Register" class="btn btn--amber">Create Account</a>
+      <a href="/Account/Login" class="btn btn--ghost">Sign In</a>
+    </div>
+  </header>
+
+  <!-- Navigation -->
+  <nav class="nav">
+    <ul class="nav__links">
+      <li><a href="#" class="active">Home</a></li>
+      <li><a href="#vacancies">Vacancies</a></li>
+      <li><a href="#requirements">Requirements</a></li>
+      <li><a href="#">Guidelines</a></li>
+      <li><a href="#">Verify Status</a></li>
+      <li><a href="#">Help &amp; FAQs</a></li>
+    </ul>
+    <span class="nav__badge">Portal Active</span>
+  </nav>
+
+  <!-- ══════════════════════════════════
+       HERO — CINEMATIC FULL BLEED
+  ══════════════════════════════════ -->
+  <section class="hero">
+
+    <!-- Red top accent line -->
+    <div class="hero__red-top"></div>
+
+    <!-- Amber vertical accent -->
+    <div class="hero__accent-band"></div>
+    <div class="hero__accent-band-2"></div>
+
+    <!-- Coat of arms watermark -->
+    <div class="hero__watermark">
+      <img src="Lagos_Seal.png" alt="" aria-hidden="true" />
+    </div>
+
+    <!-- Decorative geometric SVG grid -->
+    <div class="hero__geo">
+      <svg viewBox="0 0 1400 700" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+        <!-- Diagonal rule lines -->
+        <line x1="0" y1="700" x2="700" y2="0" stroke="rgba(255,255,255,.03)" stroke-width="1"/>
+        <line x1="200" y1="700" x2="900" y2="0" stroke="rgba(255,255,255,.03)" stroke-width="1"/>
+        <line x1="400" y1="700" x2="1100" y2="0" stroke="rgba(255,255,255,.03)" stroke-width="1"/>
+        <line x1="600" y1="700" x2="1300" y2="0" stroke="rgba(255,255,255,.02)" stroke-width="1"/>
+        <!-- Horizontal thin lines -->
+        <line x1="0" y1="175" x2="1400" y2="175" stroke="rgba(255,255,255,.025)" stroke-width="1"/>
+        <line x1="0" y1="350" x2="1400" y2="350" stroke="rgba(255,255,255,.025)" stroke-width="1"/>
+        <line x1="0" y1="525" x2="1400" y2="525" stroke="rgba(255,255,255,.025)" stroke-width="1"/>
+        <!-- Circle accents -->
+        <circle cx="1200" cy="120" r="160" fill="none" stroke="rgba(217,119,6,.06)" stroke-width="1"/>
+        <circle cx="1200" cy="120" r="100" fill="none" stroke="rgba(217,119,6,.04)" stroke-width="1"/>
+        <circle cx="150" cy="580" r="80" fill="none" stroke="rgba(196,18,48,.06)" stroke-width="1"/>
+        <!-- Corner bracket top-left -->
+        <path d="M40,40 L40,100 M40,40 L100,40" stroke="rgba(217,119,6,.2)" stroke-width="1.5" fill="none"/>
+        <!-- Corner bracket bottom-right (inside content area) -->
+        <path d="M1360,660 L1360,600 M1360,660 L1300,660" stroke="rgba(217,119,6,.12)" stroke-width="1.5" fill="none"/>
+      </svg>
+    </div>
+
+    <!-- Main content grid -->
+    <div class="hero__content">
+
+      <!-- Left: headline & CTA -->
+      <div class="hero__left">
+
+        <!-- Live badge -->
+        <div class="hero__live-badge">
+          <div class="live-dot"></div>
+          <span class="live-text">2025 Recruitment — Now Open</span>
+        </div>
+
+        <!-- Headline -->
+        <h2 class="hero__headline">
+          <strong>Serving Lagos</strong>
+          <em>with Integrity,</em>
+          <strong>Merit &amp; Excellence</strong>
+        </h2>
+
+        <div class="hero__rule"></div>
+
+        <p class="hero__body">
+          The Lagos State Civil Service Commission invites qualified Nigerian citizens to apply for positions across Lagos State Ministries, Departments and Agencies. Transparent. Merit-based. Free of charge.
+        </p>
+
+        <div class="hero__cta">
+          <a href="/Account/Register" class="btn btn--primary" style="padding:14px 36px; font-size:13px;">
+            Begin Application &rarr;
+          </a>
+          <a href="#vacancies" class="btn btn--outline-hero" style="padding:14px 28px; font-size:13px;">
+            View Vacancies
+          </a>
+        </div>
+
+        <!-- Trust signals -->
+        <div class="hero__trust">
+          <div class="trust-item">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            100% Free to Apply
+          </div>
+          <div class="trust-item">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            Merit-Based Selection
+          </div>
+          <div class="trust-item">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            Official Government Portal
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: How to Apply floating card -->
+      <div class="hero__right">
+        <div class="apply-card">
+          <div class="apply-card__header">
+            <div class="apply-card__header-icon">📋</div>
+            <div class="apply-card__title">How to Apply</div>
+          </div>
+          <div class="apply-card__body">
+            <ol class="step-list">
+              <li>Register or log in to your account</li>
+              <li>Browse available job openings</li>
+              <li>Complete all required forms accurately</li>
+              <li>Upload your credentials &amp; documents</li>
+              <li>Submit before the closing date</li>
+              <li>Print your confirmation slip</li>
+            </ol>
+          </div>
+          <div class="apply-card__footer">
+            <p class="apply-card__warning">
+              ⚠ False declarations attract disqualification and prosecution.
+            </p>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /hero__content -->
+  </section>
+
+  <!-- Stats Band -->
+  <div class="stats-band">
+    <div class="stat" style="animation-delay:.05s">
+      <div class="stat__num">24<sup>+</sup></div>
+      <div class="stat__label">Active Vacancies</div>
+    </div>
+    <div class="stat" style="animation-delay:.12s">
+      <div class="stat__num">0<sup>₦</sup></div>
+      <div class="stat__label">Application Fee</div>
+    </div>
+    <div class="stat" style="animation-delay:.19s">
+      <div class="stat__num">57</div>
+      <div class="stat__label">MDAs Covered</div>
+    </div>
+    <div class="stat" style="animation-delay:.26s">
+      <div class="stat__num">30</div>
+      <div class="stat__label">Days Remaining</div>
+    </div>
+  </div>
+
+  <!-- Governor Quote -->
+  <div class="quote-band">
+    <div class="quote-band__seal">
+      <img src="Lagos_Seal.png" alt="Lagos Seal" />
+    </div>
+    <div class="quote-band__mark">&ldquo;</div>
+    <div>
+      <p class="quote-band__body">
+        I am a product of the public education system so it is dear to me. We plan to restore the very discipline, structure, ethics and investments that make public service attractive. Public institutions will definitely receive priority attention.
+      </p>
+      <p class="quote-band__attr">— Mr. Babajide Sanwo-Olu, Governor, Lagos State</p>
+    </div>
+  </div>
+
+  <!-- Main Layout -->
+  <div class="layout">
+
+    <!-- Vacancies -->
+    <div id="vacancies" class="section-head">
+      <div>
+        <h2 class="section-head__title">Available Vacancies</h2>
+        <div class="section-head__sub">Currently open for applications — all positions are merit-based</div>
+      </div>
+      <div class="section-head__count">Showing 4 of 24</div>
+    </div>
+
+    <div class="vacancies-grid">
+
+      <div class="vcard vcard--red">
+        <div class="vcard__top"></div>
+        <div class="vcard__body">
+          <div class="vcard__ref">
+            <span class="vcard__refnum">REF: LACSC-2025-ADM-001</span>
+            <span class="badge badge--urgent">Urgent</span>
+          </div>
+          <div class="vcard__title">Administrative Officer II</div>
+          <p class="vcard__desc">Office of the Head of Service. Minimum of B.Sc. in Public Administration, Business Administration or related discipline.</p>
+          <div class="vcard__meta">
+            <div class="meta-row">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              All Local Government Areas
+            </div>
+            <div class="meta-row">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+              Closing: 15 August 2025
+            </div>
+          </div>
+        </div>
+        <div class="vcard__footer">
+          <div><div class="days-left__num">42</div><div class="days-left__label">Days Left</div></div>
+          <a href="/JobApplication/Apply/1" class="btn--apply">Apply Now</a>
+        </div>
+      </div>
+
+      <div class="vcard vcard--blue">
+        <div class="vcard__top"></div>
+        <div class="vcard__body">
+          <div class="vcard__ref">
+            <span class="vcard__refnum">REF: LACSC-2025-FIN-002</span>
+            <span class="badge badge--open">Open</span>
+          </div>
+          <div class="vcard__title">Accountant II</div>
+          <p class="vcard__desc">Ministry of Finance. Must be a qualified Accountant with ICAN or ACCA certification. Minimum 2 years post-qualification experience.</p>
+          <div class="vcard__meta">
+            <div class="meta-row">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              Alausa Secretariat, Ikeja
+            </div>
+            <div class="meta-row">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+              Closing: 20 August 2025
+            </div>
+          </div>
+        </div>
+        <div class="vcard__footer">
+          <div><div class="days-left__num">47</div><div class="days-left__label">Days Left</div></div>
+          <a href="/JobApplication/Apply/2" class="btn--apply">Apply Now</a>
+        </div>
+      </div>
+
+      <div class="vcard vcard--amber">
+        <div class="vcard__top"></div>
+        <div class="vcard__body">
+          <div class="vcard__ref">
+            <span class="vcard__refnum">REF: LACSC-2025-ICT-003</span>
+            <span class="badge badge--open">Open</span>
+          </div>
+          <div class="vcard__title">ICT Officer II</div>
+          <p class="vcard__desc">Ministry of Science and Technology. B.Sc. Computer Science or Information Technology. Knowledge of government ERP systems is an advantage.</p>
+          <div class="vcard__meta">
+            <div class="meta-row">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              Alausa Secretariat, Ikeja
+            </div>
+            <div class="meta-row">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+              Closing: 18 August 2025
+            </div>
+          </div>
+        </div>
+        <div class="vcard__footer">
+          <div><div class="days-left__num">45</div><div class="days-left__label">Days Left</div></div>
+          <a href="/JobApplication/Apply/3" class="btn--apply">Apply Now</a>
+        </div>
+      </div>
+
+      <div class="vcard vcard--green">
+        <div class="vcard__top"></div>
+        <div class="vcard__body">
+          <div class="vcard__ref">
+            <span class="vcard__refnum">REF: LACSC-2025-LGL-004</span>
+            <span class="badge badge--closing">Closing Soon</span>
+          </div>
+          <div class="vcard__title">State Counsel II</div>
+          <p class="vcard__desc">Ministry of Justice. Must possess a valid Nigerian Bar Certificate (BL). Post-call experience of at least 1 year required.</p>
+          <div class="vcard__meta">
+            <div class="meta-row">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              Ministry of Justice, Lagos Island
+            </div>
+            <div class="meta-row">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+              Closing: 10 August 2025
+            </div>
+          </div>
+        </div>
+        <div class="vcard__footer">
+          <div><div class="days-left__num">37</div><div class="days-left__label">Days Left</div></div>
+          <a href="/JobApplication/Apply/4" class="btn--apply">Apply Now</a>
+        </div>
+      </div>
+
+    </div>
+
+    <div style="text-align:center; margin-bottom: 3rem;">
+      <a href="#" class="btn btn--primary" style="padding:12px 40px; font-size:13px;">View All 24 Vacancies</a>
+    </div>
+
+    <!-- Requirements -->
+    <div id="requirements" class="section-head">
+      <div>
+        <h2 class="section-head__title">General Requirements</h2>
+        <div class="section-head__sub">Original certificates must be presented at any verification stage</div>
+      </div>
+    </div>
+
+    <div class="requirements">
+      <div class="req-card">
+        <div class="req-card__title">📄 Academic Qualifications</div>
+        <ul class="req-list">
+          <li>O'level results — WAEC, NECO or NABTEB</li>
+          <li>First degree or HND from accredited institution</li>
+          <li>NYSC Discharge or Exemption Certificate</li>
+          <li>Postgraduate certificates where applicable</li>
+          <li>Professional certificates for technical roles</li>
+        </ul>
+      </div>
+      <div class="req-card req-card--amber">
+        <div class="req-card__title" style="color:#92400e;">🪪 Personal Documents</div>
+        <ul class="req-list">
+          <li>Valid National Identity Card (NIN slip)</li>
+          <li>Birth Certificate or Age Declaration</li>
+          <li>Lagos State indigene letter or proof of residency</li>
+          <li>Two recent passport photographs (white background)</li>
+          <li>Letter of good conduct from Local Government</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer__inner">
+      <div class="footer__grid">
+        <div>
+          <div class="footer__brand-wrap">
+            <div class="footer__seal">
+              <img src="Lagos_Seal.png" alt="Lagos Seal" />
+            </div>
+            <div class="footer__brand">Lagos State Civil<br>Service Commission</div>
+          </div>
+          <p class="footer__tagline">Dedicated to attracting, placing and advancing competent and impartial civil servants in the service of the people of Lagos State — with justice and progress as guiding principles.</p>
+        </div>
+        <div>
+          <div class="footer__heading">Quick Links</div>
+          <ul class="footer__links">
+            <li><a href="#">Application Guidelines</a></li>
+            <li><a href="#">Required Documents</a></li>
+            <li><a href="#">Verify Application Status</a></li>
+            <li><a href="#">Print Confirmation Slip</a></li>
+            <li><a href="#">Past Recruitment Exercises</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer__heading">Contact the Commission</div>
+          <ul class="footer__links">
+            <li><a href="#">The Secretariat, Alausa, Ikeja</a></li>
+            <li><a href="#">08000-LACSC (Toll-Free)</a></li>
+            <li><a href="#"><span class="__cf_email__" data-cfemail="0960676f664965686a7a6a2765686e667a276e667f27676e">[email&#160;protected]</span></a></li>
+            <li><a href="#">Monday – Friday, 8am – 5pm</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <span>&copy; 2025 Lagos State Civil Service Commission. All rights reserved.</span>
+        <span><a href="#">Privacy Policy</a> &nbsp;&bull;&nbsp; <a href="#">Terms of Use</a> &nbsp;&bull;</span>
+     </div>
+    </div>
+    </footer>
+    </body>
+</html>
