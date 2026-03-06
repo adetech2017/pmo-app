@@ -26,10 +26,10 @@ export default function DirectoratePage() {
     },
     {
       id: '1',
-      name: 'Mr. AYOOLA',
+      name: 'Dr. Olugbemiga Ayoola Aina',
       position: 'Permanent Secretary, Lagos State Government',
       department: 'Executive',
-      bio: 'Provides oversight and strategic guidance to the PMO as part of the executive governance structure.',
+      bio: 'Dr Aina Olugbemiga Ayoola is a self-motivated, career inclined individual interested in the use of his professional, leadership and management skills and knowledge to work collaboratively with the human resources in the Lagos State Public Service and any other organisation with challenging and collaborative motives. He has had a distinguished Public Service career in the Lagos State Civil Service for more than three decades (32 years) both as an astute physician, researcher, medical and public administrator.',
       email: 'permanentsecretary@lagosstate.gov.ng',
       phone: '+234 (0) 1 XXX XXXX',
       image: '/images/ps-image.jpg',

@@ -1,9 +1,10 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Hero from '@/components/Hero';
-import Section, { SectionTitle, SectionSubtitle } from '@/components/Section';
+import Section from '@/components/Section';
+import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 
 interface GalleryImage {
   id: number;
@@ -16,6 +17,7 @@ interface GalleryImage {
 export default function GalleryPage() {
   const [selectedImage, setSelectedImage] = useState<GalleryImage | null>(null);
   const [selectedCategory, setSelectedCategory] = useState('all');
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   // Prevent image download on right-click
   const handleContextMenu = (e: React.MouseEvent) => {
@@ -34,46 +36,188 @@ export default function GalleryPage() {
     {
       id: 1,
       title: 'PMO Headquarters',
-      category: 'office',
-      image: '/images/1.jpg',
+      category: 'working tour',
+      image: '/images/gallery/tour1.jpg',
       description: 'State-of-the-art PMO headquarters showcasing modern governance infrastructure',
     },
     {
       id: 2,
       title: 'Governance Workshop 2024',
-      category: 'event',
-      image: '/images/2.jpg',
+      category: 'working tour',
+      image: '/images/gallery/tour2.jpg',
       description: 'Corporate governance training session with parastatals officials and stakeholders',
     },
     {
       id: 3,
       title: 'Performance Audit Team',
-      category: 'team',
-      image: '/images/3.jpg',
+      category: 'working tour',
+      image: '/images/gallery/tour3.jpg',
       description: 'Our dedicated performance audit team conducting evaluations',
     },
     {
       id: 4,
       title: 'Strategic Leadership Meeting',
-      category: 'meeting',
-      image: '/images/4.jpg',
+      category: 'working tour',
+      image: '/images/gallery/tour4.jpg',
       description: 'Executive meeting with state enterprise heads discussing performance metrics',
     },
     {
       id: 5,
       title: 'Stakeholder Engagement Forum',
-      category: 'event',
-      image: '/images/5.jpg',
+      category: 'working tour',
+      image: '/images/gallery/tour5.jpg',
+      description: 'PMO engaging with parastatals stakeholders and community partners',
+    },
+    {
+      id: 6,
+      title: 'PMO Headquarters',
+      category: 'retreat',
+      image: '/images/gallery/retreat1.jpg',
+      description: 'State-of-the-art PMO headquarters showcasing modern governance infrastructure',
+    },
+    {
+      id: 7,
+      title: 'Governance Workshop 2024',
+      category: 'retreat',
+      image: '/images/gallery/retreat2.jpg',
+      description: 'Corporate governance training session with parastatals officials and stakeholders',
+    },
+    {
+      id: 8,
+      title: 'Performance Audit Team',
+      category: 'retreat',
+      image: '/images/gallery/retreat3.jpg',
+      description: 'Our dedicated performance audit team conducting evaluations',
+    },
+    {
+      id: 9,
+      title: 'Strategic Leadership Meeting',
+      category: 'retreat',
+      image: '/images/gallery/retreat4.jpg',
+      description: 'Executive meeting with state enterprise heads discussing performance metrics',
+    },
+    {
+      id: 10,
+      title: 'Stakeholder Engagement Forum',
+      category: 'retreat',
+      image: '/images/gallery/retreat5.jpg',
+      description: 'PMO engaging with parastatals stakeholders and community partners',
+    },
+    {
+      id: 11,
+      title: 'PMO Headquarters',
+      category: 'paraface',
+      image: '/images/gallery/paraface1.jpg',
+      description: 'State-of-the-art PMO headquarters showcasing modern governance infrastructure',
+    },
+    {
+      id: 12,
+      title: 'Governance Workshop 2024',
+      category: 'paraface',
+      image: '/images/gallery/paraface2.jpg',
+      description: 'Corporate governance training session with parastatals officials and stakeholders',
+    },
+    {
+      id: 13,
+      title: 'Performance Audit Team',
+      category: 'paraface',
+      image: '/images/gallery/paraface3.jpg',
+      description: 'Our dedicated performance audit team conducting evaluations',
+    },
+    {
+      id: 14,
+      title: 'Strategic Leadership Meeting',
+      category: 'paraface',
+      image: '/images/gallery/paraface4.jpg',
+      description: 'Executive meeting with state enterprise heads discussing performance metrics',
+    },
+    {
+      id: 15,
+      title: 'Stakeholder Engagement Forum',
+      category: 'paraface',
+      image: '/images/gallery/paraface5.jpg',
+      description: 'PMO engaging with parastatals stakeholders and community partners',
+    },
+    {
+      id: 16,
+      title: 'PMO Headquarters',
+      category: 'im alive',
+      image: '/images/gallery/alive1.jpg',
+      description: 'State-of-the-art PMO headquarters showcasing modern governance infrastructure',
+    },
+    {
+      id: 17,
+      title: 'Governance Workshop 2024',
+      category: 'im alive',
+      image: '/images/gallery/alive2.jpg',
+      description: 'Corporate governance training session with parastatals officials and stakeholders',
+    },
+    {
+      id: 18,
+      title: 'Performance Audit Team',
+      category: 'im alive',
+      image: '/images/gallery/alive3.jpg',
+      description: 'Our dedicated performance audit team conducting evaluations',
+    },
+    {
+      id: 19,
+      title: 'Strategic Leadership Meeting',
+      category: 'im alive',
+      image: '/images/gallery/alive4.jpg',
+      description: 'Executive meeting with state enterprise heads discussing performance metrics',
+    },
+    {
+      id: 20,
+      title: 'Stakeholder Engagement Forum',
+      category: 'im alive',
+      image: '/images/gallery/alive5.jpg',
       description: 'PMO engaging with parastatals stakeholders and community partners',
     },
   ];
 
-  const categories = ['all', 'office', 'event', 'team', 'meeting'];
+  const categories = ['all', 'working tour', 'retreat', 'paraface', 'im alive'];
 
   const filteredImages =
     selectedCategory === 'all'
       ? galleryImages
       : galleryImages.filter((img) => img.category === selectedCategory);
+
+  // Handle image click - set both selected image and current index
+  const handleImageClick = (image: GalleryImage) => {
+    const index = filteredImages.findIndex((img) => img.id === image.id);
+    setSelectedImage(image);
+    setCurrentImageIndex(index);
+  };
+
+  // Navigate to previous image
+  const handlePreviousImage = () => {
+    if (currentImageIndex > 0) {
+      const newIndex = currentImageIndex - 1;
+      setCurrentImageIndex(newIndex);
+      setSelectedImage(filteredImages[newIndex]);
+    }
+  };
+
+  // Navigate to next image
+  const handleNextImage = () => {
+    if (currentImageIndex < filteredImages.length - 1) {
+      const newIndex = currentImageIndex + 1;
+      setCurrentImageIndex(newIndex);
+      setSelectedImage(filteredImages[newIndex]);
+    }
+  };
+
+  // Handle keyboard navigation
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (!selectedImage) return;
+      if (e.key === 'ArrowLeft') handlePreviousImage();
+      if (e.key === 'ArrowRight') handleNextImage();
+      if (e.key === 'Escape') setSelectedImage(null);
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [selectedImage, currentImageIndex, filteredImages]);
 
   return (
     <>
@@ -87,11 +231,6 @@ export default function GalleryPage() {
 
       {/* Gallery Section */}
       <Section bgColor="white">
-        <SectionTitle center>Image Gallery</SectionTitle>
-        <SectionSubtitle center>
-          Explore our collection of photos from events, offices, and activities
-        </SectionSubtitle>
-
         {/* Category Filter */}
         <div className="flex flex-wrap justify-center gap-3 mb-12">
           {categories.map((category) => (
@@ -115,7 +254,7 @@ export default function GalleryPage() {
             <div
               key={img.id}
               className="cursor-pointer group overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow select-none"
-              onClick={() => setSelectedImage(img)}
+              onClick={() => handleImageClick(img)}
               onContextMenu={handleContextMenu}
             >
               <div className="relative h-64 overflow-hidden select-none">
@@ -127,7 +266,7 @@ export default function GalleryPage() {
                   onContextMenu={handleContextMenu}
                   onDragStart={handleDragStart}
                   draggable={false}
-                  quality={80}
+                  quality={85}
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   loading="lazy"
                 />
@@ -136,12 +275,6 @@ export default function GalleryPage() {
                     View
                   </span>
                 </div>
-              </div>
-              <div className="p-4">
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                  {img.title}
-                </h3>
-                <p className="text-sm text-gray-600">{img.description}</p>
               </div>
             </div>
           ))}
@@ -164,43 +297,79 @@ export default function GalleryPage() {
           onContextMenu={handleContextMenu}
         >
           <div
-            className="relative max-w-4xl max-h-screen"
+            className="relative w-full max-w-5xl flex flex-col md:flex-row items-center justify-center gap-4 md:gap-6"
             onClick={(e) => e.stopPropagation()}
             onContextMenu={handleContextMenu}
           >
-            {/* Close Button */}
+            {/* Previous Button */}
             <button
-              onClick={() => setSelectedImage(null)}
-              className="absolute -top-10 right-0 text-white hover:text-gray-300 text-3xl font-bold"
+              onClick={handlePreviousImage}
+              disabled={currentImageIndex === 0}
+              className={`shrink-0 p-3 rounded-full transition-all ${
+                currentImageIndex === 0
+                  ? 'text-gray-600 cursor-not-allowed'
+                  : 'text-white hover:bg-white/20 hover:scale-110'
+              }`}
+              aria-label="Previous image"
             >
-              ✕
+              <FaChevronLeft size={36} />
             </button>
 
-            {/* Image */}
-            <div className="relative w-full h-auto max-h-96 md:max-h-screen select-none">
-              <Image
-                src={selectedImage.image}
-                alt={`Full view of ${selectedImage.title} - ${selectedImage.description}`}
-                width={1200}
-                height={800}
-                className="object-contain w-full h-auto max-h-screen pointer-events-none"
-                onContextMenu={handleContextMenu}
-                onDragStart={handleDragStart}
-                draggable={false}
-                quality={90}
-                sizes="100vw"
-                priority
-              />
+            {/* Main Container */}
+            <div className="relative w-full max-w-3xl flex-shrink-0">
+              {/* Close Button */}
+              <button
+                onClick={() => setSelectedImage(null)}
+                className="absolute -top-12 right-0 text-white hover:text-gray-300 text-4xl font-bold z-10 transition-colors"
+              >
+                ✕
+              </button>
+
+              {/* Image */}
+              <div className="relative w-full bg-black/30 rounded-lg overflow-hidden select-none">
+                <Image
+                  src={selectedImage.image}
+                  alt={`Full view of ${selectedImage.title} - ${selectedImage.description}`}
+                  width={1200}
+                  height={800}
+                  className="object-contain w-full h-auto max-h-[500px] md:max-h-[600px]"
+                  onContextMenu={handleContextMenu}
+                  onDragStart={handleDragStart}
+                  draggable={false}
+                  quality={85}
+                  sizes="100vw"
+                  priority
+                />
+              </div>
+
+              {/* Image Details */}
+              <div className="bg-gray-900 p-6 text-white rounded-b-lg">
+                <h2 className="text-2xl font-bold mb-3">{selectedImage.title}</h2>
+                <p className="text-gray-300 mb-2 capitalize">
+                  Category: <span className="text-red-400">{selectedImage.category}</span>
+                </p>
+                <p className="text-gray-400 text-sm leading-relaxed">{selectedImage.description}</p>
+
+                {/* Image Counter */}
+                <div className="text-sm text-gray-400 mt-4 pt-4 border-t border-gray-700">
+                  Image {currentImageIndex + 1} of {filteredImages.length}
+                </div>
+              </div>
             </div>
 
-            {/* Image Details */}
-            <div className="bg-gray-900 p-6 text-white">
-              <h2 className="text-2xl font-bold mb-2">{selectedImage.title}</h2>
-              <p className="text-gray-300 mb-2 capitalize">
-                Category: <span className="text-red-400">{selectedImage.category}</span>
-              </p>
-              <p className="text-gray-400">{selectedImage.description}</p>
-            </div>
+            {/* Next Button */}
+            <button
+              onClick={handleNextImage}
+              disabled={currentImageIndex === filteredImages.length - 1}
+              className={`shrink-0 p-3 rounded-full transition-all ${
+                currentImageIndex === filteredImages.length - 1
+                  ? 'text-gray-600 cursor-not-allowed'
+                  : 'text-white hover:bg-white/20 hover:scale-110'
+              }`}
+              aria-label="Next image"
+            >
+              <FaChevronRight size={36} />
+            </button>
           </div>
         </div>
       )}
